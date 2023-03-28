@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=MuseoModerno:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+.fade-in{
+    animation: fade 0.9s ease-in;
+}
+@keyframes fade {
+    0%{
+        opacity: 0;
+    }
+}
+.page-container {
+
+    min-height: 100vh;
+    display: flex;
+}
+
+.signup-left {
+    position: relative;
+    width: 25%;
+    height: 100vh;
+    background-color: #3F4E4F;
+
+}
+
+.signup-right {
+    position: relative;
+    width: 75%;
+    height: 100vh;
+    background-image: url("../assets/login.jpg");
+    background-size: 100% 100%;
+}
+
+.title-container {
+    padding-top: 2.5vh;
+    padding-left: 5vw;
+}
+
+.title {
+    font-family: 'Inter';
+    font-weight: 700;
+    color: #DCD7C9;
+    font-size: 40px;
+}
+.info-container{
+    position: absolute;
+    top:25%;
+    left: 10%;
+    width: 40vw;
+}
+.title-1 p{
+    font-family: 'Inter';
+    font-weight: 700;
+    color: #DCD7C9;
+    font-size: 60px;
+    margin-bottom: -2vh;
+  
+}
+.title-2 p{
+    font-family: 'Inter';
+    font-weight: 700;
+    color: #A27B5C;
+    font-size: 80px;
+}
+.info p{
+    color: #96887C;
+    font-size: 17px;
+}
+.info-button-container{
+    display: flex;
+    justify-content: center;
+    gap: 1vw;
+    outline: none;
+}
+.info-button{
+    margin-top: 2vh;
+    background: rgba(162, 123, 92, 0.7);
+    border-radius: 20px;
+    color: #DCD7C9;;
+    cursor: pointer;
+    font-family: 'Inter';
+    font-size: 20px;
+    font-weight: 700;
+    opacity: 1;
+    outline: 0 solid transparent;
+    padding: 2vh 2.5vw;
+    outline: none;
+    touch-action: manipulation;
+  
+    word-break: break-word;
+    border: 0;
+}
+button:focus{
+    outline: none;
+}
+.gradient-box{
+    border-top-right-radius: 50%;
+    height: 50vh;
+    width: 25vw;
+    position: absolute;
+    bottom:0;
+    left:0;
+    background-color: #2C3639;
+    filter: blur(150px);
+}
+.navigation-button-container{
+    position: relative;
+    top:2.5%;
+    width: 100%;
+    right: 5%;
+    text-align: end;
+    color: #96887C;
+    font-weight: 700;
+    
+}
+.navigation-button-container button{
+    border: 0;
+    font-family: 'Inter';
+    font-weight: 700;
+    color: #96887C;
+    cursor: pointer;
+    background-color: transparent;
+}
+.home-button{
+    border-left: 10px #96887C;
+}
+.signup-form-container {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    top: 10%;
+    left: 20%;
+    width: 30vw;
+    height: 85%;
+    padding-top:2vh;
+    padding-bottom: 5vh;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 1);
+    backdrop-filter: blur(13.8px);
+}
+.signup-form-title{
+    display: flex;
+    justify-content: center;
+    color: #DCD7C9;
+}
+.signup-form-title h1{
+    font-size: 40px;
+    font-family: 'Inter';
+    font-weight: 700;
+}
+.signup-footer {
+    font-weight: 600;
+    gap: 0.3vw;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+    position: absolute;
+    bottom: 0;
+    width: 30vw;
+}
+.signin-link{
+    text-decoration: none;  
+}
+
+.signin-link:hover{
+    color: #00A3FF;
+    text-decoration: none;
+}
+.input-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 20vw;
+    height: 8vh;
+    margin-bottom: 3vh;
+}
+.upload{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 20vw;
+    height: 8vh;
+    font-family:'Inter';
+    width: 100%;
+    outline: none;
+    color: #96887C;
+    background:rgba(255, 255, 255, 0.63);
+    border: 1px solid #FFFFFF;
+    backdrop-filter: blur(13.4px);
+    border-radius: 18px;
+    padding: 15px;
+
+}
+
+.input-container input[type=file] {
+    font-size: 10vh;
+    position: absolute;
+    left: 10;
+    top: 0;
+    opacity: 0;
+  }
+.input{
+    font-family:'Inter';
+    width: 100%;
+    outline: none;
+    height: 100%;
+    background:rgba(255, 255, 255, 0.63);
+    border: 1px solid #FFFFFF;
+    backdrop-filter: blur(13.4px);
+    border-radius: 18px;
+    padding: 10px;
+    text-indent: 0.5vw;
+}
+
+.submit-button-container{
+    display: flex;
+    justify-content: center;
+    
+}
+.submit-button{
+    margin-top: 1vh;
+    background: rgba(162, 123, 92, 0.7);
+    border-radius: 999px;
+    box-shadow: rgba(162, 123, 92, 0.7) 0 10px 20px -10px;
+    box-sizing: border-box;
+    color: #DCD7C9;
+    cursor: pointer;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 700;
+    opacity: 1;
+    outline: 0 solid transparent;
+    padding: 2vh 2.5vw;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: fit-content;
+    word-break: break-word;
+    border: 0;
+  }
+  
+  
