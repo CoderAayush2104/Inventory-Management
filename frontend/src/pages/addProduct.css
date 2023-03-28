@@ -8,9 +8,10 @@
     left: 0;
     bottom: 0;
     width: 100vw;
-    background: rgb(63,78,79);
-background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
+    background: rgb(63, 78, 79);
+    background: linear-gradient(90deg, rgba(63, 78, 79, 1) 25%, rgba(44, 54, 57, 1) 25%);
 }
+
 /* .empty-container {
     height:100vh;
     width: 100vw;
@@ -46,9 +47,9 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
     animation: transform-right 1s ease-in;
 }
 
-.your-product-container {
-    position: absolute;
-    top: 30vh;
+.add-product-title-container {
+    position: relative;
+    top: 10vh;
     left: 5vw;
     font-size: 25px;
     color: #A27B5C;
@@ -56,11 +57,11 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
     font-weight: 700;
 }
 
-.welcome-container {
+.welcome-container-addproduct {
     display: flex;
     gap: 0.5vw;
     position: absolute;
-    top: 20vh;
+    top: 17.5vh;
     right: 5vw;
     font-size: 20px;
 }
@@ -98,6 +99,103 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
 }
 
 
+.addproduct-input-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 3vh;
+    width: 100%;
+    padding: 5vh 5vw;
+}
+
+.addproduct-form-container {
+    position: relative;
+    top: 30vh;
+}
+
+.addproduct-button {
+    background-color: #3F4E4F;
+    border: 1px solid transparent;
+    border-radius: .75rem;
+    box-sizing: border-box;
+    color: #DCD7C9;
+    cursor: pointer;
+    flex: 0 0 auto;
+    font-family: 'Inter';
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+    position: absolute;
+    top: -5vh;
+    left: 77.5%;
+    text-align: center;
+    text-decoration: none #DCD7C9 solid;
+    text-decoration-thickness: auto;
+    transition-duration: .2s;
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(.4, 0, 0.2, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: auto;
+}
+
+.addproduct-button:hover {
+    background-color: #A27B5C;
+}
+
+.addproduct-button:focus {
+    box-shadow: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+    .addproduct-button {
+        padding: .75rem 1.5rem;
+    }
+}
+
+.addproduct-input {
+    font-family: 'Inter';
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #DCD7C9;
+    height: 7.5vh;
+    background: transparent;
+    outline: none;
+    border-radius: 20px;
+    border: 0;
+    text-indent: 2vw;
+    width: 100%;
+}
+
+.label-container {
+    position: relative;
+    top: 10vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 3vh;
+    width: 100%;
+    padding: 5vh 5vw;
+}
+
+.label {
+    font-family: 'Inter';
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #DCD7C9;
+    height: 7.5vh;
+    background: rgba(255, 255, 255, 0.27);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(13.8px);
+    border-radius: 20px;
+
+
+}
 
 .navbar-container {
     z-index: 100;
@@ -158,66 +256,4 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
     font-weight: 700;
     color: #DCD7C9;
     font-size: 40px;
-}
-
-
-.searchBox {
-    z-index: 20;
-    position: absolute;
-    top: 30%;
-    left: 65%;
-    cursor: pointer;
-    background: #2f3640;
-    height: 7.5vh;
-    border-radius: 40px;
-    padding: 10px;
-    /* width: 20vw; */
-
-}
-
-.searchBox:hover>.searchInput {
-
-    width: 20vw;
-    padding: 0 ;
-}
-
-.searchBox:hover>.searchButton {
-   
-    background: white;
-    color: #2f3640;
-}
-
-.searchButton {
-    color: white;
-    float: left;
-    width: 2.5vw;
-    height: 5vh;
-    border: none;
-    border-radius: 50%;
-    background: #3F4E4F;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.4s;
-}
-
-.searchInput {
-    border: none;
-    background: none;
-    outline: none;
-    float: left;
-    padding: 0;
-    color: white;
-    font-size: 16px;
-    transition: 0.4s;
-    line-height: 40px;
-    width: 0px;
-
-}
-
-@media screen and (max-width: 620px) {
-    .searchBox:hover>.searchInput {
-        width: 150px;
-        padding: 0 6px;
-    }
 }

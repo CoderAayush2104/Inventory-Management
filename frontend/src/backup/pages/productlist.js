@@ -11,8 +11,6 @@ export default class productlist extends Component {
     };
   }
   componentDidMount() {
-    
-   
     fetch("https://misty-tank-top-crow.cyclic.app/api/products")
       .then((data) => data.json())
       .then((json) => {
@@ -21,7 +19,7 @@ export default class productlist extends Component {
   }
   render() {
     const { dataIsLoaded, items } = this.state;
-    
+
     if (!dataIsLoaded) {
       <div>
         <h1>Please wait some time.</h1>
@@ -29,7 +27,6 @@ export default class productlist extends Component {
     }
     return (
       <div>
-        
         <div className="productlist-title">Product List</div>
         <div class="table-wrapper">
           <table class="fl-table">
@@ -45,17 +42,18 @@ export default class productlist extends Component {
               </tr>
             </thead>
             <tbody>
-              
               {items.map((item) => {
-                return <Product
-                pid={item.PRODUCT_ID}
-                name={item.PRODUCT_NAME}
-                price={item.SELLING_PRICE}
-                present={item.PRESENT_QUANTITY}
-                minimum={item.MIN_QUANTITY}
-                uid={item.USER_ID}
-                sid={item.SUPPLIER_ID}
-              />
+                return (
+                  <Product
+                    pid={item.PRODUCT_ID}
+                    name={item.PRODUCT_NAME}
+                    price={item.SELLING_PRICE}
+                    present={item.PRESENT_QUANTITY}
+                    minimum={item.MIN_QUANTITY}
+                    uid={item.USER_ID}
+                    sid={item.SUPPLIER_ID}
+                  />
+                );
               })}
               {/* <Product
                 pid={1}
