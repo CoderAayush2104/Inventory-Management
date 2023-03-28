@@ -1,6 +1,20 @@
-.productlist-page-container{
+.productlist-page-container {
     min-height: 100vh;
     display: flex;
+
+
+}
+
+.horizontal-line {
+    width: 95%;
+    height: 0px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid white;
+    backdrop-filter: blur(14px);
+    z-index: 5;
+    top: 15vh;
+    left: 2.5vw
 }
 
 .productlist-left {
@@ -8,12 +22,91 @@
     width: 25%;
     height: 100vh;
     background-color: #3F4E4F;
+    animation: transform-left 1s ease-in;
 
 }
+
 .productlist-right {
     position: relative;
     width: 75%;
     height: 100vh;
     background-color: #2C3639;
-    background-size: 100% 100%;
+
+}
+.your-product-container{
+    position: absolute;
+    top : 30vh;
+    left: 5vw;
+    font-size: 25px;
+    color: #A27B5C;
+    font-family: 'Inter';
+    font-weight: 700;
+}
+.welcome-container{
+    display: flex;
+    gap: 0.5vw;
+    position: absolute;
+    top:20vh;
+    right: 5vw;
+    font-size: 20px;
+}
+.welcome-msg{
+    font-family: 'Inter';
+    font-weight: 700;
+    color: #DCD7C9;
+}
+.welcome-name{
+    font-family: 'Inter';
+    font-weight: 700;
+    color: #A27B5C;
+}
+@keyframes transform-left {
+    0% {
+        width: 50%;
+    }
+
+    100% {
+        width: 25%;
+    }
+}
+
+
+
+.navbar-container {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    width: 70vw;
+    top: 3.5vh;
+    left: 27.5vw;
+    height: 4vw;
+    padding-top: 1.5vh;
+    color: #DCD7C9;
+    background: rgba(255, 255, 255, 0.27);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(13.8px);
+    border-radius: 20px;
+}
+
+.gradient-box {
+    border-top-right-radius: 50%;
+    height: 50vh;
+    width: 25vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #2C3639;
+    filter: blur(150px);
+}
+
+.title-container {
+    padding-top: 2.5vh;
+    padding-left: 5vw;
+}
+
+.title {
+    font-family: 'Inter';
+    font-weight: 700;
+    color: #DCD7C9;
+    font-size: 40px;
 }

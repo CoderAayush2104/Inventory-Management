@@ -14,6 +14,7 @@ export default class signup extends Component {
   render() {
     return (
       <div className="page-container">
+ 
         <div className="signup-left">
         <div className="gradient-box"></div>
 
