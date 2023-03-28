@@ -15,7 +15,7 @@
 
 .signup-left {
     position: relative;
-    width: 25%;
+    width: 50%;
     height: 100vh;
     background-color: #3F4E4F;
 
@@ -23,7 +23,7 @@
 
 .signup-right {
     position: relative;
-    width: 75%;
+    width: 50%;
     height: 100vh;
     background-image: url("../assets/login.jpg");
     background-size: 100% 100%;

@@ -5,14 +5,14 @@
 
 .productlist-left {
     position: relative;
-    width: 30%;
+    width: 25%;
     height: 100vh;
     background-color: #3F4E4F;
 
 }
 .productlist-right {
     position: relative;
-    width: 70%;
+    width: 75%;
     height: 100vh;
     background-color: #2C3639;
     background-size: 100% 100%;
