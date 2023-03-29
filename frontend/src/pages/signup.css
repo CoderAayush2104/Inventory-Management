@@ -170,7 +170,7 @@ button:focus{
     color: #00A3FF;
     text-decoration: none;
 }
-.input-container{
+.input-container-login{
     position: relative;
     display: flex;
     justify-content: center;
@@ -196,7 +196,7 @@ button:focus{
 
 }
 
-.input-container input[type=file] {
+.input-container-login input[type=file] {
     font-size: 10vh;
     position: absolute;
     left: 10;

@@ -45,10 +45,10 @@ export default class signup extends Component {
             <div className="form">
               <form>
                 
-                <div className="input-container">
+                <div className="input-container-login">
                   <input className="input" placeholder="Email" />
                 </div>
-                <div className="input-container">
+                <div className="input-container-login">
                   <input
                     className="input"
                     placeholder="Password"

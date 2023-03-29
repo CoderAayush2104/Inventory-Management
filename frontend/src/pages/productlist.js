@@ -5,14 +5,18 @@ import { Product } from './Product';
 
 
 
+
+
 export default class Productlist extends Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [],
       dataIsLoaded: false,
+   
     };
   }
+  
   componentDidMount() {
     fetch("https://ochre-beetle-cape.cyclic.app/api/products")
       .then((data) => data.json())
@@ -20,7 +24,18 @@ export default class Productlist extends Component {
         this.setState({ items: json, dataIsLoaded: true });
       });
   }
+
+   displayList = (event) => {
+
+    fetch( `https://ochre-beetle-cape.cyclic.app/api/products/search-product/${event.target.value}`)
+    .then((data) => data.json())
+    .then((json) => {
+      this.setState({items: json})
+    })
+  }
   render() {
+
+    
     const { dataIsLoaded, items } = this.state;
     
     if (!dataIsLoaded) {
@@ -28,6 +43,7 @@ export default class Productlist extends Component {
         <h1>Please wait some time.</h1>
       </div>;
     }
+
     return (
       <div className="productlist-page-container">
         <div className="horizontal-line"></div>
@@ -48,8 +64,8 @@ export default class Productlist extends Component {
             <p className="welcome-name">Aayush !</p>
           </div>
           <div class="searchBox">
-              <input class="searchInput"type="text" name="" placeholder="Search"/>
-              <button class="searchButton" href="#" type="submit">
+              <input class="searchInput"type="search" name="" placeholder="Search" onChange={this.displayList}/>
+              <button class="searchButton">
               <i class="fa-solid fa-magnifying-glass"></i>
               </button>
           </div>
