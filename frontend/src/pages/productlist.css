@@ -109,8 +109,11 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
     position: absolute;
     z-index: 5;
     top: 40vh;
-    width: 90vw;
+    width: 95vw;
     height: 10vh;
+}
+.column-title{
+    background-color: #A27B5C;
 }
 
 .gradient-box {
