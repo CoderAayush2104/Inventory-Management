@@ -1,85 +1,167 @@
-import React,{Component} from "react";
-import { NavLink } from "react-router-dom";
+import React, { Component } from "react";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./signin.css";
+import jwt_decode from "jwt-decode";
 
-
-
-export default class signup extends Component {
+export default class signin extends Component {
   constructor() {
     super();
     this.state = {
       animate: true,
+      user_id: "",
+      password: "",
+      login: false,
+      token: "",
+     
+      
     };
   }
-  render() {
-    return (
-      <div className="page-container">
-        <div className="signup-left">
-        <div className="gradient-box"></div>
 
-          <div className="title-container">
-            <p className="title">Stockify</p>
-          </div>
-          <div className="info-container">
-          <div className="title-1"><p>Your Online</p></div>
-          <div className="title-2"><p>WareHouse</p></div>
-          <div className="info"><p>Efficiently managing your inventory can make or break your business. Let us help you take control and streamline your operations.</p></div>
-          <div className="info-button-container">
-            <button className="info-button">Get Started</button>
-            <button className="info-button">Know More</button>
-          </div>
-          </div>
-          
-        </div>
-        <div className="signup-right">
-          <div className="navigation-button-container">
-            <button className="home-button">Home</button>
-            |
-            <button className="about-US">About Us</button>
-          </div>
-          <div className={this.state.animate ? "fade-in signin-form-container" : "signin-form-container"}>
-            <div className="signup-form-title">
-              <h1>Sign In</h1>
-            </div>
-            <div className="form">
-              <form>
-                
-                <div className="input-container-login">
-                  <input className="input" placeholder="Email" />
-                </div>
-                <div className="input-container-login">
-                  <input
-                    className="input"
-                    placeholder="Password"
-                  />
-                </div>
-            
-            
-                
-               <div className="submit-button-container">
-               <button class="submit-button">Sign In</button>
-               </div>
-              </form>
-            </div>
-            <div className="signup-footer">
-            <p>Don't have an account ?</p>
-            
-            <p><NavLink className="signin-link" to="/">Sign Up</NavLink></p>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    );
-  }
   componentDidMount() {
     if (window.sessionStorage.getItem("firstLoadDone") === null) {
       this.setState({ animate: true });
     } else {
       this.setState({ animate: false });
     }
+
+  }
+
+  login(event) {
+    event.preventDefault();
+    console.warn(this.state);
+    fetch("https://ochre-beetle-cape.cyclic.app/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(this.state),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if(data.success){
+          this.setState({login:true})
+        }
+        return(data)
+      })
+      .then((data) => {
+        if (data.success) {
+          sessionStorage.setItem(
+            "login",
+            JSON.stringify({
+              login: true,
+              token: data.token,
+            })
+          );
+      
+            console.log(jwt_decode(JSON.parse(sessionStorage.getItem("login")).token))
+          console.log(sessionStorage.getItem("login"));
+          
+        } else {
+          alert("Invalid Username or Password");
+        }
+      })
+      .catch((error) => console.log(error));
+    
+    this.setState({ login: false });
+    this.setState({ user_id: "" });
+    this.setState({ password: "" });
+  }
+
+  render() {
+    
+    return (
+      <div>
+        { !this.state.login ? (
+      <div className="page-container">
+        <div className="signup-left">
+          <div className="gradient-box"></div>
+
+          <div className="title-container">
+            <p className="title">Stockify</p>
+          </div>
+          <div className="info-container">
+            <div className="title-1">
+              <p>Your Online</p>
+            </div>
+            <div className="title-2">
+              <p>WareHouse</p>
+            </div>
+            <div className="info">
+              <p>
+                Efficiently managing your inventory can make or break your
+                business. Let us help you take control and streamline your
+                operations.
+              </p>
+            </div>
+            <div className="info-button-container">
+              <button className="info-button">Get Started</button>
+              <button className="info-button">Know More</button>
+            </div>
+          </div>
+        </div>
+        <div className="signup-right">
+          <div className="navigation-button-container">
+            <button className="home-button">Home</button>|
+            <button className="about-US">About Us</button>
+          </div>
+          <div
+            className={
+              this.state.animate
+                ? "fade-in signin-form-container"
+                : "signin-form-container"
+            }
+          >
+            <div className="signup-form-title">
+              <h1>Sign In</h1>
+            </div>
+            <div className="form">
+              <form
+                onSubmit={(event) => {
+                  this.login(event);
+                }}
+              >
+                <div className="input-container-login">
+                  <input
+                    className="input"
+                    placeholder="Username"
+                    value={this.state.user_id}
+                    onChange={(event) => {
+                      this.setState({ user_id: event.target.value });
+                    }}
+                  />
+                </div>
+                <div className="input-container-login">
+                  <input
+                    className="input"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={(event) => {
+                      this.setState({ password: event.target.value });
+                    }}
+                  />
+                </div>
+
+                <div className="submit-button-container">
+                  <button class="submit-button">Sign In</button>
+                </div>
+              </form>
+            </div>
+            <div className="signup-footer">
+              <p>Don't have an account ?</p>
+
+              <p>
+                <NavLink className="signin-link" to="/">
+                  Sign Up
+                </NavLink>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>) : (
+        <Navigate to="/productlist" replace={true}/>
+      )}
+      </div>
+    );
   }
 }
-
-

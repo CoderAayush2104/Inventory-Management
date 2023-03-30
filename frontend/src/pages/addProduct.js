@@ -4,6 +4,7 @@ import addProduct from "./../backup/pages/addProduct";
 
 import { useState } from "react";
 import Navbar from "../components/Navbar";
+import { Navigate } from "react-router-dom";
 
 export const AddProduct = () => {
   const [PRODUCT_ID, setPRODUCT_ID] = useState("");
@@ -50,7 +51,8 @@ export const AddProduct = () => {
     
   }
   return (
-    <div className="productlist-page-container">
+    <div>
+      {JSON.parse(sessionStorage.getItem("login")) ? (<div className="productlist-page-container">
       <div className="horizontal-line"></div>
 
       <div className="productlist-left">
@@ -133,17 +135,18 @@ export const AddProduct = () => {
                 />
               </div>
 
-              <div className="label">
+              {/* <div className="label">
                 <input
                   className="addproduct-input"
                   name="USER_ID"
                   value={USER_ID}
                 />
-              </div>
+              </div> */}
             </div>
           </form>
         </div>
       </div>
+    </div>) : (<Navigate to = "/signIn" replace/>)}
     </div>
   );
 };

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import "./productlist.css";
-
+import { Navigate } from "react-router-dom";
 import { Product } from "./Product";
 import { AddProduct } from "./addProduct";
 import { NavLink } from "react-router-dom";
 import Navbar from "../components/Navbar";
+
+
 
 export default class Productlist extends Component {
   constructor(props) {
@@ -35,7 +37,8 @@ export default class Productlist extends Component {
   render() {
     const { dataIsLoaded, items } = this.state;
     return (
-      <div className="productlist-page-container">
+      <div>
+        {JSON.parse(sessionStorage.getItem("login"))?.login ? (<div className="productlist-page-container">
         <div className="horizontal-line"></div>
         <div className="productlist-left">
           <div className="gradient-box"></div>
@@ -87,6 +90,7 @@ export default class Productlist extends Component {
             );
           })}
         </div>
+      </div>) : (<Navigate to = "/signIn" replace/>)}
       </div>
     );
   }
