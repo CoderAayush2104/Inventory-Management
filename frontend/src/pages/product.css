@@ -17,6 +17,13 @@
     margin-bottom: 2vh;
     
 }
+.delete-button{
+    background: transparent;
+    border: none;
+    color: #DCD7C9;
+    position: absolute;
+    padding-right: 10vw;
+}
 .column-title{
     position: absolute;
     left: 2.5vw;
@@ -32,6 +39,7 @@
     backdrop-filter: blur(13.8px);
     border-radius: 20px;
     padding-bottom: 1vh;
+    
 }
 .list-item {
     display: flex;

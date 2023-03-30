@@ -197,35 +197,7 @@
 
 }
 
-.navbar-container {
-    z-index: 100;
-    display: flex;
-    justify-content: space-around;
-    position: fixed;
-    width: 70vw;
-    top: 3.5vh;
-    left: 27.5vw;
-    height: 4vw;
-    padding-top: 2vh;
-    color: #DCD7C9;
-    background: rgba(255, 255, 255, 0.27);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(13.8px);
-    border-radius: 20px;
-    padding-bottom: 1vh;
-}
 
-.navbar-item {
-    font-family: 'Inter';
-    font-weight: 700;
-    border-right: 4px solid #DCD7C9;
-    padding-right: 5vw;
-    padding-left: 5vw;
-}
-
-.last {
-    border-right: 0px;
-}
 
 .list-container {
     position: absolute;

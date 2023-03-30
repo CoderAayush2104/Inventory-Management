@@ -3,11 +3,11 @@ import "./addProduct.css";
 import addProduct from "./../backup/pages/addProduct";
 
 import { useState } from "react";
-// const addProductForm = document.getElementById("add-product-form");
+import Navbar from "../components/Navbar";
+
 export const AddProduct = () => {
   const [PRODUCT_ID, setPRODUCT_ID] = useState("");
   const [PRODUCT_NAME, setPRODUCT_NAME] = useState("");
-
   const [MIN_QUANTITY, setMIN_QUANTITY] = useState("");
   const [PRESENT_QUANTITY, setPRESENT_QUANTITY] = useState("");
   const [SUPPLIER_ID, setSUPPLIER_ID] = useState("");
@@ -75,13 +75,7 @@ export const AddProduct = () => {
           <p className="welcome-name">Aayush !</p>
         </div>
 
-        <div className="navbar-container">
-          <div className="navbar-item">Home</div>
-          <div className="navbar-item">Products</div>
-          <div className="navbar-item">Supplier</div>
-          <div className="navbar-item">Order</div>
-          <div className="navbar-item last">Help</div>
-        </div>
+        <Navbar/>
         <div className="addproduct-form-container">
           <form id="add-product-form" onSubmit={handleSubmit}>
             <button className="addproduct-button" type="submit">

@@ -34,9 +34,7 @@ export default class signup extends Component {
         </div>
         <div className="signup-right">
           <div className="navigation-button-container">
-            <button className="home-button">Home</button>
-            |
-            <button className="about-US">About Us</button>
+            <button className="home-button">Home</button>|<button className="about-US">About Us</button>
           </div>
           <div className={this.state.animate ? "fade-in signup-form-container" : "signup-form-container"}>
             <div className="signup-form-title">
