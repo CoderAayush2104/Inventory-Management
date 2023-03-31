@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom";
 import "./navbar.css"
 import { Product } from './../pages/Product';
 export default function Navbar() {
+  function resetToken(){
+    sessionStorage.clear();
+  }
   return (
     <div className="navbar-container">
       <div className="navbar-item">Home</div>
@@ -26,7 +29,7 @@ export default function Navbar() {
       </div>
       <div className="navbar-item">Supplier</div>
       <div className="navbar-item">Order</div>
-      <div className="navbar-item last">Help</div>
+      <div className="navbar-item last"><button className="logout" onClick={resetToken}><NavLink className = "logout-link"to = "/signIn">Logout</NavLink></button></div>
     </div>
   );
 }

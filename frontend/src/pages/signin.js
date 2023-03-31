@@ -3,6 +3,7 @@ import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./signin.css";
 import jwt_decode from "jwt-decode";
+import { pageLoader as PageLoader} from "../components/pageLoader";
 
 export default class signin extends Component {
   constructor() {
@@ -13,6 +14,7 @@ export default class signin extends Component {
       password: "",
       login: false,
       token: "",
+      loading: "",
      
       
     };
@@ -24,10 +26,12 @@ export default class signin extends Component {
     } else {
       this.setState({ animate: false });
     }
-
+    
   }
 
   login(event) {
+
+    this.setState({loading:true})
     event.preventDefault();
     console.warn(this.state);
     fetch("https://ochre-beetle-cape.cyclic.app/api/users/login", {
@@ -53,11 +57,11 @@ export default class signin extends Component {
               token: data.token,
             })
           );
-      
-            console.log(jwt_decode(JSON.parse(sessionStorage.getItem("login")).token))
+          console.log(jwt_decode(JSON.parse(sessionStorage.getItem("login")).token))
           console.log(sessionStorage.getItem("login"));
           
         } else {
+          this.setState({loading : false})
           alert("Invalid Username or Password");
         }
       })
@@ -73,7 +77,8 @@ export default class signin extends Component {
     return (
       <div>
         { !this.state.login ? (
-      <div className="page-container">
+          <div> 
+            { !this.state.loading ? (<div className="page-container">
         <div className="signup-left">
           <div className="gradient-box"></div>
 
@@ -158,6 +163,8 @@ export default class signin extends Component {
             </div>
           </div>
         </div>
+      </div>) : (<PageLoader/>)}
+      
       </div>) : (
         <Navigate to="/productlist" replace={true}/>
       )}

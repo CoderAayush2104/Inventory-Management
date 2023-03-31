@@ -168,4 +168,21 @@ margin-top: -0.75vh;
   }
 }
 
-
+.logout{
+  background: transparent;
+  outline : none;
+  border: none;
+  padding: 0;
+  margin-left: -1vw;
+}
+.logout-link{
+  text-decoration: none;
+  color: #DCD7C9;
+  font-family: 'Inter';
+    font-weight: 700;
+    
+}
+.logout-link:hover{
+  text-decoration: none;
+  color: #DCD7C9;
+}
