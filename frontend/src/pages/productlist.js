@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./productlist.css";
 import { Navigate } from "react-router-dom";
 import { Product } from "./Product";
+import { AddProduct } from "./addProduct";
+import { NavLink } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { listLoader as ListLoader} from "../components/listLoader";
 
@@ -24,7 +26,7 @@ export default class Productlist extends Component {
 
   displayList = (event) => {
     fetch(
-      `https://ochre-beetle-cape.cyclic.app/api/products/search-product/${event.target.value}`
+      `https://ochre-beetle-cape.cyclic.app/api/products/${event.target.value}`
     )
       .then((data) => data.json())
       .then((json) => {
