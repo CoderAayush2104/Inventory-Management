@@ -62,7 +62,7 @@ export default class signin extends Component {
           
         } else {
           this.setState({loading : false})
-          alert("Invalid Username or Password");
+          setTimeout(()=>alert("Invalid Username or Password"),500)
         }
       })
       .catch((error) => console.log(error));
