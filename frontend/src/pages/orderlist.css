@@ -112,11 +112,11 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
     width: 95vw;
     height: 10vh;
 }
-.column-title{
+.orderlist-column-title{
     position: absolute;
     left: 2.5vw;
     display: grid;
-    grid-template-columns: repeat(6,1fr);
+    grid-template-columns: repeat(5,1fr);
     z-index: 6;
     width: 95vw;
     height: 4vw;

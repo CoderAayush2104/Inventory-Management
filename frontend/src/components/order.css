@@ -1,9 +1,9 @@
-.row-container {
+.orderlist-row-container {
     position: relative;
     top: 10vh;
     left: 2.5vw;
     display: grid;
-    grid-template-columns: repeat(6,1fr);
+    grid-template-columns: repeat(5,1fr);
     z-index: 6;
     width: 95vw;
     height: 4vw;
@@ -17,30 +17,14 @@
     margin-bottom: 2vh;
     
 }
-.delete-button{
+/* .delete-button{
     background: transparent;
     border: none;
     color: #DCD7C9;
     position: absolute;
     padding-right: 10vw;
-}
-.column-title{
-    position: absolute;
-    left: 2.5vw;
-    display: grid;
-    grid-template-columns: repeat(6,1fr);
-    z-index: 6;
-    width: 95vw;
-    height: 4vw;
-    padding-top: 2vh;
-    color: #DCD7C9;
-    background: rgba(255, 255, 255, 0.27);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(13.8px);
-    border-radius: 20px;
-    padding-bottom: 1vh;
-    
-}
+} */
+
 .list-item {
     display: flex;
     justify-content: center;
@@ -51,16 +35,7 @@
     text-align: center;
     font-size: 15px;
 }
-.column-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Inter';
-    font-weight: 700;
-    border-right: 4px solid #DCD7C9;
-    text-align: center;
-    font-size: 15px;
-}
+
 
 .last {
     border-right: 0px;

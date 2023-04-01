@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import "./productlist.css";
+import "./orderlist.css";
 import { Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Navbar from "../components/Navbar";
 import { listLoader as ListLoader } from "../components/listLoader";
-import { Product } from "./../components/Product";
 
-export default class Productlist extends Component {
+import { Order } from "../components/Order"
+
+export default class Orderlist extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +20,7 @@ export default class Productlist extends Component {
   componentDidMount() {
 
     this.setState({ user_id : jwt_decode( JSON.parse(sessionStorage.getItem("login")).token).result.user_id})
-    fetch("https://ochre-beetle-cape.cyclic.app/api/products",{
+    fetch("https://ochre-beetle-cape.cyclic.app/api/orders",{
       headers : {
         "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
       }
@@ -32,7 +33,7 @@ export default class Productlist extends Component {
 
   displayList = (event) => {
     fetch(
-      `https://ochre-beetle-cape.cyclic.app/api/products/${event.target.value}`,{
+      `https://ochre-beetle-cape.cyclic.app/api/orders/`,{
         headers : {
           "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
         }
@@ -55,7 +56,7 @@ export default class Productlist extends Component {
               <div className="title-container">
                 <p className="title">Stockify</p>
               </div>
-              <div className="your-product-container">Your Products !!</div>
+              <div className="your-product-container">Your Orders !!</div>
             </div>
 
             <div className="productlist-right">
@@ -78,26 +79,27 @@ export default class Productlist extends Component {
               <Navbar />
             </div>
             <div className="list-container">
-              <div className="column-title">
+              <div className="orderlist-column-title">
+                <div className="column-item">Order_ID</div>
                 <div className="column-item">Product_ID</div>
-                <div className="column-item">Product_Name</div>
-                <div className="column-item">Present_Quantity</div>
-                <div className="column-item">Minimum_Quantity</div>
-                <div className="column-item ">Supplier_ID</div>
-                <div className="column-item last">Price</div>
+                <div className="column-item">Supplier_ID</div>
+                <div className="column-item">Date</div>
+                <div className="column-item last">Quantity</div>
               </div>
               {!dataIsLoaded ? (
                 <ListLoader />
               ) : (
                 items.map((item) => {
+                  
                   return (
-                    <Product
-                      p_id={item.PRODUCT_ID}
-                      p_name={item.PRODUCT_NAME}
-                      price={item.SELLING_PRICE}
-                      present={item.PRESENT_QUANTITY}
-                      minimum={item.MIN_QUANTITY}
+                    
+                    <Order
+                      order_id={item.ORDER_ID}
+                      product_id={item.PRODUCT_ID}
                       supplier_id={item.SUPPLIER_ID}
+                      date={JSON.stringify(item.DATE).slice(1,11)}
+                      quantity={item.QUANTITY}
+              
                     />
                   );
                 })
