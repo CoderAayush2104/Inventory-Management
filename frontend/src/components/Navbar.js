@@ -49,11 +49,11 @@ export default function Navbar() {
             <li class="dropdown dropdown-1">
               Order
               <ul class="dropdown_menu dropdown_menu-1">
-                <NavLink className="navlink" to="/addProduct">
+                <NavLink className="navlink" to="/addOrder">
                   <li class="dropdown_item-1">Place Order</li>
                 </NavLink>
 
-                <NavLink className="navlink" to="/productlist">
+                <NavLink className="navlink" to="/orderList">
                   <li class="dropdown_item-2 last-item">Display Orders</li>
                 </NavLink>
               </ul>

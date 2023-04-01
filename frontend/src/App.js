@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import {AddProduct} from "./pages/addProduct";
 import Productlist from "./pages/productlist"
 import Orderlist from "./pages/orderlist";
+import { AddOrder } from "./pages/addOrder";
 
 
 
@@ -19,6 +20,7 @@ function App() {
         {/* <Route path="/home" element={<Home/>} /> */}
         <Route path="/addProduct" element={<AddProduct/>} />
         <Route path="/orderList" element={<Orderlist/>}/>
+        <Route path="/addOrder" element={<AddOrder/>}/>
       </Routes>
     </>
   );

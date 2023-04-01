@@ -35,6 +35,8 @@
     width: 25%;
     height: 100vh;
     background-color: #3F4E4F;
+
+
 }
 
 .productlist-right {
@@ -42,6 +44,7 @@
     width: 75%;
     height: 100vh;
     background-color: #2C3639;
+    
 }
 
 .add-product-title-container {
@@ -207,3 +210,4 @@
     color: #DCD7C9;
     font-size: 40px;
 }
+

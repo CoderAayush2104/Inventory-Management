@@ -34,7 +34,7 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
     width: 25%;
     height: 100vh;
     background-color: #3F4E4F;
-    animation: transform-left 1s ease-in;
+
 
 }
 
@@ -43,7 +43,7 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
     width: 75%;
     height: 100vh;
     background-color: #2C3639;
-    animation: transform-right 1s ease-in;
+
 }
 
 .your-product-container {
@@ -77,25 +77,7 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
     color: #A27B5C;
 }
 
-@keyframes transform-left {
-    0% {
-        width: 50%;
-    }
 
-    100% {
-        width: 25%;
-    }
-}
-
-@keyframes transform-right {
-    0% {
-        width: 50%;
-    }
-
-    100% {
-        width: 75%;
-    }
-}
 
 
 

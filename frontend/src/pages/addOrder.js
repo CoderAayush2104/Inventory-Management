@@ -1,30 +1,29 @@
 import React, { Component } from "react";
-import "./addProduct.css";
-import addProduct from "./../backup/pages/addProduct";
+import "./addOrder.css";
 import jwt_decode from "jwt-decode";
+import { DatePicker } from '@mui/x-date-pickers'
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Navigate } from "react-router-dom";
 
-export const AddProduct = () => {
+export const AddOrder = () => {
+  const [ORDER_ID, setORDER_ID] = useState("");
   const [PRODUCT_ID, setPRODUCT_ID] = useState("");
-  const [PRODUCT_NAME, setPRODUCT_NAME] = useState("");
-  const [MIN_QUANTITY, setMIN_QUANTITY] = useState("");
-  const [PRESENT_QUANTITY, setPRESENT_QUANTITY] = useState("");
   const [SUPPLIER_ID, setSUPPLIER_ID] = useState("");
-  const [SELLING_PRICE, setSELLING_PRICE] = useState("");
+  const [DATE, setDATE] = useState("");
+  const [QUANTITY, setQUANTITY] = useState("");
+
   const USER_ID = JSON.parse(sessionStorage.getItem("login"))?.token;
 
   function handleSubmit(event) {
     event.preventDefault();
 
     let data = {
+      ORDER_ID,
       PRODUCT_ID,
-      PRODUCT_NAME,
-      MIN_QUANTITY,
-      PRESENT_QUANTITY,
       SUPPLIER_ID,
-      SELLING_PRICE,
+      DATE,
+      QUANTITY,
       USER_ID,
     };
     console.log(data);
@@ -42,12 +41,12 @@ export const AddProduct = () => {
         };
       });
     });
+    setORDER_ID("");
     setPRODUCT_ID("");
-    setPRODUCT_NAME("");
-    setMIN_QUANTITY("");
-    setPRESENT_QUANTITY("");
-    setSELLING_PRICE("");
     setSUPPLIER_ID("");
+    setDATE("");
+    setQUANTITY("");
+    
     
   }
   return (
@@ -60,14 +59,14 @@ export const AddProduct = () => {
         <div className="title-container">
           <p className="title">Stockify</p>
         </div>
-        <div className="add-product-title-container">Add Your Product</div>
+        <div className="add-product-title-container">Place your Order</div>
         <div className="label-container">
+          <div className="label">Order Id</div>
           <div className="label">Product Id</div>
-          <div className="label">Product Name</div>
-          <div className="label">Present Quantity</div>
-          <div className="label">Minimum Quantity</div>
-          <div className="label">Supplier Name</div>
-          <div className="label">Selling Price</div>
+          <div className="label">Supplier Id</div>
+          {/* <div className="label">Date</div> */}
+          <div className="label">Quantity</div>
+    
         </div>
       </div>
 
@@ -81,14 +80,23 @@ export const AddProduct = () => {
         <div className="addproduct-form-container">
           <form id="add-product-form" onSubmit={handleSubmit}>
             <button className="addproduct-button" type="submit">
-              Add Product
+              Place Order
             </button>
             <div className="addproduct-input-container">
               <div className="label">
                 <input
                   className="addproduct-input"
-                  name="PRODUCT_ID"
+                  name="ORDER_ID"
                   type="number"
+                  value={ORDER_ID}
+                  onChange={(e) => setORDER_ID(e.target.value)}
+                />
+              </div>
+              <div className="label">
+                <input
+                  className="addproduct-input"
+                  type="number"
+                  name="PRODUCT_ID"
                   value={PRODUCT_ID}
                   onChange={(e) => setPRODUCT_ID(e.target.value)}
                 />
@@ -96,44 +104,31 @@ export const AddProduct = () => {
               <div className="label">
                 <input
                   className="addproduct-input"
-                  name="PRODUCT_NAME"
-                  value={PRODUCT_NAME}
-                  onChange={(e) => setPRODUCT_NAME(e.target.value)}
-                />
-              </div>
-              <div className="label">
-                <input
-                  className="addproduct-input"
-                  name="PRESENT_QUANTITY"
-                  value={PRESENT_QUANTITY}
-                  onChange={(e) => setPRESENT_QUANTITY(e.target.value)}
-                />
-              </div>
-              <div className="label">
-                <input
-                  className="addproduct-input"
-                  name="MIN_QUANTITY"
-                  value={MIN_QUANTITY}
-                  onChange={(e) => setMIN_QUANTITY(e.target.value)}
-                />
-              </div>
-              <div className="label">
-                <input
-                  className="addproduct-input"
-                  name="SUPPLIER_ID"
                   type="number"
+                  name="SUPPLIER_ID"
                   value={SUPPLIER_ID}
                   onChange={(e) => setSUPPLIER_ID(e.target.value)}
                 />
               </div>
+              {/* <div className="label">
+                <input
+                  className="addproduct-input"
+                  name="DATE"
+                  type="date"
+                  value={DATE}
+                  onChange={(e) => setDATE(e.target.value)}
+                />
+              </div> */}
               <div className="label">
                 <input
                   className="addproduct-input"
-                  name="SELLING_PRICE"
-                  value={SELLING_PRICE}
-                  onChange={(e) => setSELLING_PRICE(e.target.value)}
+                  name="QUANTITY"
+                  type="number"
+                  value={QUANTITY}
+                  onChange={(e) => setQUANTITY(e.target.value)}
                 />
               </div>
+           
 
               {/* <div className="label">
                 <input

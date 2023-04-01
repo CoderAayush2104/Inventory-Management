@@ -13,22 +13,24 @@ export default class Orderlist extends Component {
     this.state = {
       items: [],
       dataIsLoaded: false,
-      user_id : "",
+   
     };
   }
 
   componentDidMount() {
-
-    this.setState({ user_id : jwt_decode( JSON.parse(sessionStorage.getItem("login")).token).result.user_id})
-    fetch("https://ochre-beetle-cape.cyclic.app/api/orders",{
-      headers : {
-        "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
-      }
-    })
-      .then((data) => data.json())
-      .then((json) => {
-        this.setState({ items: json, dataIsLoaded: true });
-      });
+    if(sessionStorage.length !== 0){
+     
+      fetch("https://ochre-beetle-cape.cyclic.app/api/orders",{
+        headers : {
+          "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
+        }
+      })
+        .then((data) => data.json())
+        .then((json) => {
+          this.setState({ items: json, dataIsLoaded: true });
+        });
+    }
+    
   }
 
   displayList = (event) => {
@@ -62,7 +64,7 @@ export default class Orderlist extends Component {
             <div className="productlist-right">
               <div className="welcome-container">
                 <p className="welcome-msg">Welcome Back</p>
-                <p className="welcome-name">{this.state.user_id}</p>
+                <p className="welcome-name">{jwt_decode( JSON.parse(sessionStorage.getItem("login"))?.token)?.result.user_id}</p>
               </div>
               <div class="searchBox">
                 <input
