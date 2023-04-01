@@ -13,7 +13,7 @@ export const AddProduct = () => {
   const [PRESENT_QUANTITY, setPRESENT_QUANTITY] = useState("");
   const [SUPPLIER_ID, setSUPPLIER_ID] = useState("");
   const [SELLING_PRICE, setSELLING_PRICE] = useState("");
-  const USER_ID = JSON.parse(sessionStorage.getItem("login"))?.token;
+  const USER_ID = jwt_decode(JSON.parse(sessionStorage.getItem("login"))?.token).user_id;
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -31,6 +31,9 @@ export const AddProduct = () => {
     fetch("https://ochre-beetle-cape.cyclic.app/api/products", {
       method: "POST",
       headers: {
+     
+          "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
+
         "Content-Type": "application/json",
         Accept: "application/json",
       },
