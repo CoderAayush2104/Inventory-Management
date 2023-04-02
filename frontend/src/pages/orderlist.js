@@ -83,7 +83,7 @@ export default class Orderlist extends Component {
             <div className="list-container">
               <div className="orderlist-column-title">
                 <div className="column-item">Order ID</div>
-                <div className="column-item">Product ID</div>
+                <div className="column-item">Product Name</div>
                 <div className="column-item">Supplier Name</div>
                 <div className="column-item">Date</div>
                 <div className="column-item last">Quantity</div>

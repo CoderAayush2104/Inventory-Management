@@ -16,7 +16,7 @@ export default function Navbar() {
               Product
               <ul class="dropdown_menu dropdown_menu-1">
                 <NavLink className="navlink" to="/addProduct">
-                  <li class="dropdown_item-1">Add <br/>Product</li>
+                  <li class="dropdown_item-1">Add Product</li>
                 </NavLink>
                 <li class="dropdown_item-2 ">Update Product</li>
                 <NavLink className="navlink" to="/productlist">
@@ -33,7 +33,7 @@ export default function Navbar() {
               Supplier
               <ul class="dropdown_menu dropdown_menu-1">
                 <NavLink className="navlink" to="/addProduct">
-                  <li class="dropdown_item-1">Add<br/>Supplier</li>
+                  <li class="dropdown_item-1">Add Supplier</li>
                 </NavLink>
                 <li class="dropdown_item-2 ">Update Supplier</li>
                 <NavLink className="navlink" to="/productlist">
@@ -46,9 +46,9 @@ export default function Navbar() {
       <div className="navbar-item menu-container">
         <nav>
           <ul class="menu">
-            <li class="dropdown dropdown-1">
+            <li class="dropdown dropdown-1 ">
               Order
-              <ul class="dropdown_menu dropdown_menu-1">
+              <ul class="dropdown_menu dropdown_menu-1 order">
                 <NavLink className="navlink" to="/addOrder">
                   <li class="dropdown_item-1">Place Order</li>
                 </NavLink>

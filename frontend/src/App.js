@@ -8,7 +8,7 @@ import Productlist from "./pages/productlist"
 import Orderlist from "./pages/orderlist";
 import { AddOrder } from "./pages/addOrder";
 
-
+import { home as Home } from "./pages/home";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route exact path="/" element={<Signup/>} />
         <Route exact path="/signIn" element={<Signin/>} />
         <Route path="/productList" element={<Productlist/>}/>
-        {/* <Route path="/home" element={<Home/>} /> */}
+        <Route path="/home" element={<Home/>} />
         <Route path="/addProduct" element={<AddProduct/>} />
         <Route path="/orderList" element={<Orderlist/>}/>
         <Route path="/addOrder" element={<AddOrder/>}/>
