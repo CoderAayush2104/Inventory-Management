@@ -1,6 +1,10 @@
-.productlist-page-container {
+body{
+    padding: 0;
+    margin: 0;
+}
+.addorder-page-container {
     /* height: 100%; */
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     display: flex;
     flex-wrap: wrap;
     position: absolute;
@@ -30,31 +34,75 @@
     left: 2.5vw
 }
 
-.productlist-left {
+.addorder-left {
     position: relative;
-    width: 25%;
+    width: 35%;
     height: 100vh;
     background-color: #3F4E4F;
 
 
 }
 
-.productlist-right {
+.addorder-right {
     position: relative;
-    width: 75%;
+    width: 65%;
     height: 100vh;
     background-color: #2C3639;
     
 }
+.place-order-form-container{
+    padding-left: 2.5vw;
+    position: absolute;
+    top: 45%;
+    width: 60vw;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+/* .left-triangle{
+    position: absolute;
+    top: 38.5vh;
+    left: 20.25vw;
+    width: 0;
+    height: 0;
+    border: 20vh solid transparent;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 50vw solid rgba(0, 0, 0, 0.21);
+    transform: rotate(90deg);
+    mix-blend-mode: normal;
+    z-index: 1;
+}
+.right-triangle{
+    position: absolute;
+    top: 13.25vh;
+    right: 18vw;
+    width: 0;
+    height: 0;
+    border: 50vh solid transparent;
+    border-top: 0;
+    border-left: 0;
+    border-bottom: 60vw solid rgba(0, 0, 0, 0.31);
+    transform: rotate(-90deg);
+    mix-blend-mode: normal;
+    z-index: 1;
 
-.add-product-title-container {
-    position: relative;
-    top: 10vh;
-    left: 5vw;
+backdrop-filter: blur(13.8px); 
+} */
+.input-container{
+    display: grid;
+    grid-template-columns: 30% 65%;
+    column-gap: 2.5vw;
+    padding: 2.5vh 0;
+}
+.add-order-title-container {
+    position: absolute;
+    top: 25vh;
+    left: 2.5vw;
     font-size: 25px;
     color: #A27B5C;
     font-family: 'Inter';
     font-weight: 700;
+    z-index: 5;
 }
 
 .welcome-container-addproduct {
@@ -93,7 +141,7 @@
     top: 30vh;
 }
 
-.addproduct-button {
+.placeorder-button {
     background-color: #3F4E4F;
     border: 1px solid transparent;
     border-radius: .75rem;
@@ -106,8 +154,8 @@
     font-weight: 700;
     line-height: 1.5rem;
     position: absolute;
-    top: -5vh;
-    left: 77.5%;
+    top: -10vh;
+    right: 0.5vw;
     text-align: center;
     text-decoration: none #DCD7C9 solid;
     text-decoration-thickness: auto;
@@ -120,18 +168,18 @@
     width: auto;
 }
 
-.addproduct-button:hover {
+.placeorder-button:hover {
     background-color: #A27B5C;
 }
 
-.addproduct-button:focus {
+.placeorder-button:focus {
     box-shadow: none;
     outline: 2px solid transparent;
     outline-offset: 2px;
 }
 
 @media (min-width: 768px) {
-    .addproduct-button {
+    .placeorder-button {
         padding: .75rem 1.5rem;
     }
 }

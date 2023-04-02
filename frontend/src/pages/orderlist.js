@@ -64,7 +64,7 @@ export default class Orderlist extends Component {
             <div className="productlist-right">
               <div className="welcome-container">
                 <p className="welcome-msg">Welcome Back</p>
-                <p className="welcome-name">{jwt_decode( JSON.parse(sessionStorage.getItem("login"))?.token)?.result.user_id}</p>
+                <p className="welcome-name">{jwt_decode( JSON.parse(sessionStorage.getItem("login"))?.token)?.result.user_id} !</p>
               </div>
               <div class="searchBox">
                 <input
@@ -82,9 +82,9 @@ export default class Orderlist extends Component {
             </div>
             <div className="list-container">
               <div className="orderlist-column-title">
-                <div className="column-item">Order_ID</div>
-                <div className="column-item">Product_ID</div>
-                <div className="column-item">Supplier_ID</div>
+                <div className="column-item">Order ID</div>
+                <div className="column-item">Product ID</div>
+                <div className="column-item">Supplier Name</div>
                 <div className="column-item">Date</div>
                 <div className="column-item last">Quantity</div>
               </div>
@@ -97,8 +97,8 @@ export default class Orderlist extends Component {
                     
                     <Order
                       order_id={item.ORDER_ID}
-                      product_id={item.PRODUCT_ID}
-                      supplier_id={item.SUPPLIER_ID}
+                      product_name={item.PRODUCT_NAME}
+                      supplier_name={item.NAME}
                       date={JSON.stringify(item.DATE).slice(1,11)}
                       quantity={item.QUANTITY}
               

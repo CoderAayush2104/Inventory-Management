@@ -52,6 +52,7 @@ export default class Productlist extends Component {
       <div>
         {JSON.parse(sessionStorage.getItem("login"))?.login ? (
           <div className="productlist-page-container">
+            
             <div className="horizontal-line"></div>
             <div className="productlist-left">
               <div className="gradient-box"></div>
@@ -62,9 +63,10 @@ export default class Productlist extends Component {
             </div>
 
             <div className="productlist-right">
+            
               <div className="welcome-container">
                 <p className="welcome-msg">Welcome Back</p>
-                <p className="welcome-name">{jwt_decode( JSON.parse(sessionStorage.getItem("login"))?.token)?.result.user_id}</p>
+                <p className="welcome-name">{jwt_decode( JSON.parse(sessionStorage.getItem("login"))?.token)?.result.user_id} !</p>
               </div>
               <div class="searchBox">
                 <input
@@ -82,11 +84,11 @@ export default class Productlist extends Component {
             </div>
             <div className="list-container">
               <div className="column-title">
-                <div className="column-item">Product_ID</div>
-                <div className="column-item">Product_Name</div>
-                <div className="column-item">Present_Quantity</div>
-                <div className="column-item">Minimum_Quantity</div>
-                <div className="column-item ">Supplier_ID</div>
+                <div className="column-item">Product ID</div>
+                <div className="column-item">Product Name</div>
+                <div className="column-item">Present Quantity</div>
+                <div className="column-item">Minimum Quantity</div>
+                <div className="column-item ">Supplier Name</div>
                 <div className="column-item last">Price</div>
               </div>
               {!dataIsLoaded ? (
@@ -100,7 +102,7 @@ export default class Productlist extends Component {
                       price={item.SELLING_PRICE}
                       present={item.PRESENT_QUANTITY}
                       minimum={item.MIN_QUANTITY}
-                      supplier_id={item.SUPPLIER_ID}
+                      supplier_name={item.NAME}
                     />
                   );
                 })

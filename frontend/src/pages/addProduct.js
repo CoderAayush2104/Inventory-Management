@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import "./addProduct.css";
-import addProduct from "./../backup/pages/addProduct";
-import jwt_decode from "jwt-decode";
+import "./addProduct.css";import jwt_decode from "jwt-decode";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Navigate } from "react-router-dom";
@@ -77,7 +75,7 @@ export const AddProduct = () => {
       <div className="productlist-right">
         <div className="welcome-container-addproduct">
           <p className="welcome-msg">Welcome Back</p>
-          <p className="welcome-name">{jwt_decode( JSON.parse(sessionStorage.getItem("login"))?.token)?.result.user_id}</p>
+          <p className="welcome-name">{jwt_decode( JSON.parse(sessionStorage.getItem("login"))?.token)?.result.user_id} !</p>
         </div>
 
         <Navbar/>

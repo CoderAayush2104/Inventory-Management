@@ -54,6 +54,7 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
     color: #A27B5C;
     font-family: 'Inter';
     font-weight: 700;
+    z-index: 5;
 }
 
 .welcome-container {
@@ -76,12 +77,6 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
     font-weight: 700;
     color: #A27B5C;
 }
-
-
-
-
-
-
 
 .last {
     border-right: 0px;
