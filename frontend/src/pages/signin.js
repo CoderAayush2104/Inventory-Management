@@ -166,7 +166,7 @@ export default class signin extends Component {
       </div>) : (<PageLoader/>)}
       
       </div>) : (
-        <Navigate to="/productlist" replace={true}/>
+        <Navigate to="/home" replace={true}/>
       )}
       </div>
     );

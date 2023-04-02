@@ -8,7 +8,9 @@ export default function Navbar() {
   }
   return (
     <div className="navbar-container">
-      <div className="navbar-item">Home</div>
+      <div className="navbar-item"><NavLink className="logout-link" to="/home">
+            Home
+          </NavLink></div>
       <div className="navbar-item menu-container">
         <nav>
           <ul class="menu">
