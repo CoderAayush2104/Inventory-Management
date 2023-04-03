@@ -45,7 +45,7 @@ export const AddOrder = () => {
           "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
             "Content-Type":"application/json"
           },
-          body : JSON.stringify(result),
+          body : JSON.stringify(result),  
       
         }))
         
