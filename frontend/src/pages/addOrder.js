@@ -1,25 +1,25 @@
 import React, { Component } from "react";
 import "./addOrder.css";
 import jwt_decode from "jwt-decode";
-import { DatePicker } from "@mui/x-date-pickers";
+
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Navigate } from "react-router-dom";
 
 export const AddOrder = () => {
-  const [ORDER_ID, setORDER_ID] = useState("");
+
   const [PRODUCT_NAME, setPRODUCT_NAME] = useState("");
   const [SUPPLIER_NAME, setSUPPLIER_NAME] = useState("");
-  // const [DATE, setDATE] = useState("");
+
   const [QUANTITY, setQUANTITY] = useState("");
 
-  // const USER_ID = JSON.parse(sessionStorage.getItem("login"))?.token;
+
 
   function handleSubmit(event) {
     event.preventDefault();
 
     let data = {
-      ORDER_ID,
+    
       PRODUCT_NAME,
       SUPPLIER_NAME,
       QUANTITY,
@@ -52,7 +52,7 @@ export const AddOrder = () => {
       })
       .then((resp) => console.log(resp.json()))
       .catch((error) => console.log(error));
-    setORDER_ID("");
+
     setPRODUCT_NAME("");
     setSUPPLIER_NAME("");
     setQUANTITY("");
@@ -91,18 +91,7 @@ export const AddOrder = () => {
                 <button className="placeorder-button" type="submit">
                   Place Order
                 </button>
-                <div className="input-container">
-                  <div className="label">Order Id</div>
-                  <div className="label">
-                    <input
-                      className="addproduct-input"
-                      name="ORDER_ID"
-                      type="number"
-                      value={ORDER_ID}
-                      onChange={(e) => setORDER_ID(e.target.value)}
-                    />
-                  </div>
-                </div>
+        
                 <div className="input-container">
                   <div className="label">Product Name</div>
                   <div className="label">

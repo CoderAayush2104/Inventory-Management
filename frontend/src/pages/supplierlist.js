@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import "./orderlist.css";
+import "./supplierlist.css";
 import { Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Navbar from "../components/Navbar";
 import { listLoader as ListLoader } from "../components/listLoader";
 
-import { Order } from "../components/Order"
 
-export default class Orderlist extends Component {
+import { Supplier } from './../components/supplier';
+
+export default class Supplierlist extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,22 +19,21 @@ export default class Orderlist extends Component {
 
   componentDidMount() {
     if(sessionStorage.length !== 0){
-     
-      fetch("https://ochre-beetle-cape.cyclic.app/api/orders",{
+      fetch("https://ochre-beetle-cape.cyclic.app/api/suppliers",{
         headers : {
           "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
         }
       })
         .then((data) => data.json())
         .then((json) => {
-          this.setState({ items: json, dataIsLoaded: true });
+          this.setState({ items: json.data, dataIsLoaded: true });
         });
     }
   }
 
   displayList = (event) => {
     fetch(
-      `https://ochre-beetle-cape.cyclic.app/api/orders/`,{
+      `https://ochre-beetle-cape.cyclic.app/api/suppliers/${event.target.value}`,{
         headers : {
           "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
         }
@@ -41,11 +41,12 @@ export default class Orderlist extends Component {
     )
       .then((data) => data.json())
       .then((json) => {
-        this.setState({ items: json });
+        this.setState({ items: json.data });
       });
   };
   render() {
     const { dataIsLoaded, items } = this.state;
+
     return (
       <div>
         {JSON.parse(sessionStorage.getItem("login"))?.login ? (
@@ -56,7 +57,7 @@ export default class Orderlist extends Component {
               <div className="title-container">
                 <p className="title">Stockify</p>
               </div>
-              <div className="your-product-container">Your Orders !!</div>
+              <div className="your-product-container">Your Suppliers !!</div>
             </div>
 
             <div className="productlist-right">
@@ -79,24 +80,25 @@ export default class Orderlist extends Component {
               <Navbar />
             </div>
             <div className="list-container">
-              <div className="orderlist-column-title">
-                <div className="column-item">Order ID</div>
-                <div className="column-item">Product Name</div>
+              <div className="supplierlist-column-title">
+                <div className="column-item">Supplier ID</div>
+                
                 <div className="column-item">Supplier Name</div>
-                <div className="column-item">Date</div>
-                <div className="column-item last">Quantity</div>
+                <div className="column-item">Contact No.</div>
+            
+                <div className="column-item last">Email</div>
               </div>
               {!dataIsLoaded ? (
                 <ListLoader />
               ) : (
+  
                 items.map((item) => {
                   return (
-                    <Order
-                      order_id={item.ORDER_ID}
-                      product_name={item.PRODUCT_NAME}
+                    <Supplier
+                      supplier_id={item.supplier_id}
+                      contact_no={item.CONTACT_NO}
                       supplier_name={item.NAME}
-                      date={JSON.stringify(item.DATE).slice(1,11)}
-                      quantity={item.QUANTITY}
+                      email={item.EmailID}
                     />
                   );
                 })

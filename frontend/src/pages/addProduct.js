@@ -5,25 +5,24 @@ import Navbar from "../components/Navbar";
 import { Navigate } from "react-router-dom";
 
 export const AddProduct = () => {
-  const [PRODUCT_ID, setPRODUCT_ID] = useState("");
+ 
   const [PRODUCT_NAME, setPRODUCT_NAME] = useState("");
   const [MIN_QUANTITY, setMIN_QUANTITY] = useState("");
   const [PRESENT_QUANTITY, setPRESENT_QUANTITY] = useState("");
   const [SUPPLIER_ID, setSUPPLIER_ID] = useState("");
   const [SELLING_PRICE, setSELLING_PRICE] = useState("");
-  const USER_ID = jwt_decode(JSON.parse(sessionStorage.getItem("login"))?.token).user_id;
+  
 
   function handleSubmit(event) {
     event.preventDefault();
 
     let data = {
-      PRODUCT_ID,
       PRODUCT_NAME,
       MIN_QUANTITY,
       PRESENT_QUANTITY,
       SUPPLIER_ID,
       SELLING_PRICE,
-      USER_ID,
+     
     };
     console.log(data);
     fetch("https://ochre-beetle-cape.cyclic.app/api/products", {
@@ -43,7 +42,7 @@ export const AddProduct = () => {
         };
       });
     });
-    setPRODUCT_ID("");
+
     setPRODUCT_NAME("");
     setMIN_QUANTITY("");
     setPRESENT_QUANTITY("");
@@ -63,11 +62,11 @@ export const AddProduct = () => {
         </div>
         <div className="add-product-title-container">Add Your Product</div>
         <div className="label-container">
-          <div className="label">Product Id</div>
+
           <div className="label">Product Name</div>
           <div className="label">Present Quantity</div>
           <div className="label">Minimum Quantity</div>
-          <div className="label">Supplier Name</div>
+          <div className="label">Supplier Id</div>
           <div className="label">Selling Price</div>
         </div>
       </div>
@@ -85,15 +84,7 @@ export const AddProduct = () => {
               Add Product
             </button>
             <div className="addproduct-input-container">
-              <div className="label">
-                <input
-                  className="addproduct-input"
-                  name="PRODUCT_ID"
-                  type="number"
-                  value={PRODUCT_ID}
-                  onChange={(e) => setPRODUCT_ID(e.target.value)}
-                />
-              </div>
+           
               <div className="label">
                 <input
                   className="addproduct-input"
@@ -135,14 +126,6 @@ export const AddProduct = () => {
                   onChange={(e) => setSELLING_PRICE(e.target.value)}
                 />
               </div>
-
-              {/* <div className="label">
-                <input
-                  className="addproduct-input"
-                  name="USER_ID"
-                  value={USER_ID}
-                />
-              </div> */}
             </div>
           </form>
         </div>

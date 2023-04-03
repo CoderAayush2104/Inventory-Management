@@ -78,7 +78,7 @@ export const home = () => {
                   </div>
                   <div class="ag-courses_item">
                     <NavLink
-                      to="../productlist"
+                      to="../billing"
                       className="ag-courses-item_link"
                     >
                       <div class="ag-courses-item_bg"></div>
@@ -93,7 +93,7 @@ export const home = () => {
                   </div>
                   <div class="ag-courses_item">
                     <NavLink
-                      to="../productlist"
+                      to="../supplierList"
                       className="ag-courses-item_link"
                     >
                       <div class="ag-courses-item_bg"></div>

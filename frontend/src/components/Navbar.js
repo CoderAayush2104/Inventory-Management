@@ -34,11 +34,11 @@ export default function Navbar() {
             <li class="dropdown dropdown-1">
               Supplier
               <ul class="dropdown_menu dropdown_menu-1">
-                <NavLink className="navlink" to="/addProduct">
+                <NavLink className="navlink" to="/addSupplier">
                   <li class="dropdown_item-1">Add Supplier</li>
                 </NavLink>
                 <li class="dropdown_item-2 ">Update Supplier</li>
-                <NavLink className="navlink" to="/productlist">
+                <NavLink className="navlink" to="/supplierList">
                   <li class="dropdown_item-3 last-item">Display Suppliers</li>
                 </NavLink>
               </ul>
@@ -63,6 +63,9 @@ export default function Navbar() {
           </ul>
         </nav>
       </div>
+      <div className="navbar-item"><NavLink className="logout-link" to="/billing">
+            Billing
+          </NavLink></div>
       <div className="navbar-item last">
         <button className="logout" onClick={resetToken}>
           <NavLink className="logout-link" to="/signIn">
