@@ -24,6 +24,22 @@
     position: absolute;
     padding-right: 10vw;
 }
+.delete-button :hover{
+    cursor: pointer;
+}
+
+.fade{
+    animation: fadeOut 0.5s ease-out;
+}
+@keyframes fadeOut{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+   
+    }
+}
 
 .list-item {
     display: flex;
