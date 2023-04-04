@@ -12,7 +12,7 @@ export default class Productlist extends Component {
     this.state = {
       items: [],
       dataIsLoaded: false,
-   
+
     };
   }
 

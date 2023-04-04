@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./product.css";
-import { CSSTransition } from "react-transition-group";
+
 export const Product = ({
   p_id,
   p_name,
@@ -12,15 +12,9 @@ export const Product = ({
   const PRODUCT_ID = p_id;
   let data = { PRODUCT_ID };
 
- 
-  const[deleteRow,setDeleteRow] = useState();
+  function deleteItem(e) {
+    e.target.parentElement.parentElement.parentElement.remove();
 
-  function deleteItem() {
-    setTimeout(() => {document.querySelector(".delete-button")?.parentElement?.parentElement?.remove()},550)
-    
-    if(!deleteRow){
-      setDeleteRow(true);
-    }
     fetch(
       `https://ochre-beetle-cape.cyclic.app/api/products/delete/${PRODUCT_ID}`,
       {
@@ -34,18 +28,17 @@ export const Product = ({
         body: JSON.stringify(data),
       }
     )
-    
       .then((resp) => console.log(resp))
-      
+
       .catch((error) => console.log(error));
   }
   return (
-    <div className={deleteRow ? "row-container fade" : "row-container"}>
+    <div className="row-container">
       <div className="list-item">
         <button
           className="delete-button"
           id="delete-button"
-          onClick={deleteItem}
+          onClick={(e) => deleteItem(e)}
         >
           <i class="fa-solid fa-trash" />
         </button>

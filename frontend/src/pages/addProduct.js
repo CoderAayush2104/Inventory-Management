@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import "./addProduct.css";import jwt_decode from "jwt-decode";
+import "./addProduct.css";
+import jwt_decode from "jwt-decode";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Navigate } from "react-router-dom";

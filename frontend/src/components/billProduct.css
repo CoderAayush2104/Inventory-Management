@@ -1,0 +1,29 @@
+.billproduct-container{
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+.bill-label{
+    font-family: 'Inter';
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #DCD7C9;
+    height: 7.5vh;
+    background: rgba(255, 255, 255, 0.27);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(13.8px);
+    border-radius: 20px;
+    width: 25%;
+}
+.quantity{
+    width: 15%;
+}
+
+
+.price-label{
+    display: flex;
+    justify-content: end;
+    width: 10vw;
+}

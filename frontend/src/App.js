@@ -11,7 +11,7 @@ import { AddOrder } from "./pages/addOrder";
 import { home as Home } from "./pages/home";
 import Supplierlist from "./pages/supplierlist";
 import { AddSupplier } from "./pages/addSupplier";
-import { Billing } from "./components/billing";
+import { Billing } from "./pages/billing";
 
 function App() {
   return (
