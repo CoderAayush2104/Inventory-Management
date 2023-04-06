@@ -131,7 +131,13 @@
     position: relative;
     top: 30vh;
 }
-
+.billing-button-container{
+    position: relative;
+    top:2.5vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
 .billing-button {
     background-color: #3F4E4F;
     border: 1px solid transparent;
@@ -144,10 +150,8 @@
     font-size: 1.125rem;
     font-weight: 700;
     line-height: 1.5rem;
-    position: relative;
-    /* top: 5vh; */
-    left: 40%;
-
+  
+  
     text-align: center;
     text-decoration: none #DCD7C9 solid;
     text-decoration-thickness: auto;
@@ -263,6 +267,23 @@
     cursor:pointer;
 }
 .add-item-bill i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.modal-body {
+    width:80vw;
+}
+
+.modal-content {
+    /* position: absolute; */
+    left: 0vw;
+    width: 80vw;
+}
+
+.modal-dialog{
     display: flex;
     justify-content: center;
     align-items: center;

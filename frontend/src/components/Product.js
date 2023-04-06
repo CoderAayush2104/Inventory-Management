@@ -31,7 +31,10 @@ export const Product = ({
       .then((resp) => console.log(resp))
 
       .catch((error) => console.log(error));
+      
   }
+
+  
   return (
     <div className="row-container">
       <div className="list-item">
