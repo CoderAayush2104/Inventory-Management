@@ -59,14 +59,17 @@ export default class BillingHistory extends Component {
             
             <div className="horizontal-line"></div>
             <div className="bill-table-container">
+              <div className="billcolumn-title-background">
               <div className="billcolumn-title">
-                <div className="column-item">Customer Name</div>
-                <div className="column-item">Phone Number</div>
-                <div className="column-item">Products</div>
-                <div className="column-item">Quantity</div>
-                <div className="column-item ">Price</div>
-                <div className="column-item last">Amount</div>
+                <div className="billcolumn-item">Customer Name</div>
+                <div className="billcolumn-item">Phone Number</div>
+                <div className="billcolumn-item">Products</div>
+                <div className="billcolumn-item">Quantity</div>
+                <div className="billcolumn-item ">Price</div>
+                <div className="billcolumn-item last">Amount</div>
               </div>
+              </div>
+             
               {!dataIsLoaded ? (
                 
                 <ListLoader />
