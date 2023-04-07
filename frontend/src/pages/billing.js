@@ -5,12 +5,11 @@ import jwt_decode from "jwt-decode";
 import Navbar from "../components/Navbar";
 import { Navigate } from "react-router-dom";
 import { BillProduct } from "../components/billProduct";
-import { product } from './../backup/pages/product';
 
 export const Billing = () => {
   
  
-  const [productId,setProductId] = useState("");
+  const [ProductName,setProductName] = useState("");
   const [quantity,setQuantity] = useState("")
   const [billItems, setbillItems] = useState([]);
   const [CUST_CONTACT, setCUST_CONTACT] = useState("");
@@ -54,7 +53,7 @@ export const Billing = () => {
     setCUST_NAME("");
     setbillItems((billItems) => billItems = []) ;
     setInputList((inputList) => inputList = []);
-    setProductId("")
+    setProductName("")
     setQuantity("")
     setAmount("")
  
@@ -123,13 +122,13 @@ export const Billing = () => {
   }
   function addInput() {
     console.log(billItems.length)
-    if(productId === "" || quantity === ""){
+    if(ProductName === "" || quantity === ""){
       alert("Add details of first product to proceed");
       return;
     }
     if(!billItems.length){
       
-      billItems[0] = {"PRODUCT_ID" : productId ,"QUANTITY" : quantity}
+      billItems[0] = {"PRODUCT_NAME" : ProductName ,"QUANTITY" : quantity}
     }
       setInputList(
         inputList.concat(
@@ -219,7 +218,7 @@ export const Billing = () => {
 
             <Navbar />
             <div className="billing-form-container">
-              <form id="add-product-form" onSubmit={handleSubmit}>
+              <form id="add-product-form" onSubmit={handleSubmit} autoComplete="off">
                 <div className="addproduct-input-container">
                   <div className="label">
                     <input
@@ -251,8 +250,8 @@ export const Billing = () => {
                   required
                   className="addproduct-input"
                   name="PRODUCT_NAME"
-                  value={productId}
-                  onChange={(event)=>setProductId(event.target.value)}
+                  value={ProductName}
+                  onChange={(event)=>setProductName(event.target.value)}
                 /></div>
         <div className='bill-label'>Quantity</div>
         <div className='bill-label quantity'>  <input
