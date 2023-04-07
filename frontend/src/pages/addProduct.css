@@ -177,13 +177,7 @@
 
 
 
-.list-container {
-    position: absolute;
-    z-index: 5;
-    top: 40vh;
-    width: 90vw;
-    height: 10vh;
-}
+
 
 .gradient-box {
     border-top-right-radius: 50%;
@@ -196,14 +190,3 @@
     filter: blur(150px);
 }
 
-.title-container {
-    padding-top: 2.5vh;
-    padding-left: 5vw;
-}
-
-.title {
-    font-family: 'Inter';
-    font-weight: 700;
-    color: #DCD7C9;
-    font-size: 40px;
-}

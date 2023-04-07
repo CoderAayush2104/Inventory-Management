@@ -30,17 +30,7 @@
     background-size: 100% 100%;
 }
 
-.title-container {
-    padding-top: 2.5vh;
-    padding-left: 5vw;
-}
 
-.title {
-    font-family: 'Inter';
-    font-weight: 700;
-    color: #DCD7C9;
-    font-size: 40px;
-}
 .info-container{
     position: absolute;
     top:25%;

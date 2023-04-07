@@ -1,6 +1,7 @@
 .billproduct-container{
     display: flex;
     justify-content: space-between;
+    padding-right: 2vw;
     width: 95%;
 }
 .bill-label{
@@ -15,10 +16,10 @@
     border: 1px solid rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(13.8px);
     border-radius: 20px;
-    width: 30%;
+    width: 35%;
 }
 .quantity{
-    width: 30%;
+    width: 25%;
 }
 
 /* 

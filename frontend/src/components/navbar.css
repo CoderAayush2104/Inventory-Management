@@ -23,9 +23,7 @@
     padding-right: 4vw;
     padding-left: 1.5vw;
 }
-.last {
-  border-right: 0px;
-}
+
 /*Drop Down*/
 @import url("https://fonts.googleapis.com/css?family=Sen&display=swap");
 .menu-container{

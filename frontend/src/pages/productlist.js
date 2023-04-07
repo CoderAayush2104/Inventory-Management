@@ -94,7 +94,7 @@ export default class Productlist extends Component {
               {!dataIsLoaded ? (
                 <ListLoader />
               ) : (
-                items.map((item) => {
+                items?.map((item) => {
                   return (
                     <Product
                       p_id={item.PRODUCT_ID}

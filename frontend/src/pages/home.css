@@ -63,23 +63,24 @@ body {
 
 
 .ag-courses_box {
-  display: -webkit-box;
+  /* display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: start;
   -ms-flex-align: start;
   align-items: flex-start;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-
+  flex-wrap: wrap; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   padding: 50px 0;
 }
 
 .ag-courses_item {
-  -ms-flex-preferred-size: calc(33.33333% - 30px);
-  flex-basis: calc(33.33333% - 30px);
+  -ms-flex-preferred-size: calc(33.33333% - 2vw);
+  flex-basis: calc(33.33333% - 2vw);
 
-  margin: 0 15px 30px;
+  margin: 0 1vw 3vh;
 
   overflow: hidden;
 
@@ -88,7 +89,7 @@ body {
 
 .ag-courses-item_link {
   display: block;
-  padding: 30px 20px;
+  padding: 5vh 2vw;
   background: rgba(255, 255, 255, 0.27);
   background: linear-gradient(0deg, #D9D9D9 30%, rgba(255, 255, 255, 0.27) 30%);
 
@@ -134,14 +135,14 @@ body {
 }
 
 .ag-courses-item_bg {
-  height: 128px;
-  width: 128px;
+  height: 20vh;
+  width: 10vw;
   background-color: #f9b234;
 
   z-index: 1;
   position: absolute;
-  top: -75px;
-  right: -75px;
+  top: -20vh;
+  right: -5vw;
 
   border-radius: 50%;
 

@@ -76,9 +76,7 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
 }
 
 
-.last {
-    border-right: 0px;
-}
+
 
 .list-container {
     position: absolute;
@@ -126,19 +124,6 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
     background-color: #2C3639;
     filter: blur(150px);
 }
-
-.title-container {
-    padding-top: 2.5vh;
-    padding-left: 5vw;
-}
-
-.title {
-    font-family: 'Inter';
-    font-weight: 700;
-    color: #DCD7C9;
-    font-size: 40px;
-}
-
 
 .searchBox {
     z-index: 20;
