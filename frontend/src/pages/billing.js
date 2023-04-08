@@ -6,6 +6,11 @@ import Navbar from "../components/Navbar";
 import { Navigate } from "react-router-dom";
 import { BillProduct } from "../components/billProduct";
 
+
+const Products = ["Pen", "Pencil", "Notebook", "Marker", "Crayon", "Scale"];
+
+const specificElement = document.getElementById("autocomplete");
+
 export const Billing = () => {
   
  
@@ -17,6 +22,10 @@ export const Billing = () => {
   const [inputList, setInputList] = useState([]);
   const [amount,setAmount] = useState("");
   const [stateChangeObject,setStateChangeObject] = useState({func : () => {console.log("Hello")}})
+
+  const [matchingProducts, setMatchingProducts] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const [visibility, setVisibility] = useState(false);
 
  
   // console.log("outside submit");
@@ -42,7 +51,6 @@ export const Billing = () => {
   
   //Function to access Child Data
   function Callback(ChildData) {
-    
     setbillItems(billItems.concat(ChildData));
   }
 
@@ -59,31 +67,7 @@ export const Billing = () => {
  
     //Clear state of child component
     resetState();
-    
   }
-  // useEffect(setTimeout(()=> clearBill,2000),)
-
-  
-  // function fetchWithRetry(url, options, retryCount, maxRetries) {
-  //   return fetch(url, options)
-  //     .then(response => {
-  //       console.log(response)
-  //       if (!response.ok) {
-  //         throw new Error(response.statusText);
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((resp) => console.log(resp))
-  //     .catch(error => {
-  //       if (retryCount < maxRetries) {
-  //         // Retry the request after a delay
-  //         const delay = Math.pow(2, retryCount) * 1000;
-  //         return new Promise(resolve => setTimeout(resolve, delay))
-  //           .then(() => fetchWithRetry(url, options, retryCount + 1, maxRetries));
-  //       }
-  //       throw error;
-  //     });
-  // }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -93,7 +77,6 @@ export const Billing = () => {
       CUST_NAME,
       billItems,
     };
-
 
     console.log(data);
     fetch("https://ochre-beetle-cape.cyclic.app/api/bills", {
@@ -115,9 +98,6 @@ export const Billing = () => {
         console.log(error);
         alert("Unexpected Error Occured.\n Please try again.");
       })
-      
-      
-      // clearBill();
 
   }
   function addInput() {
@@ -127,7 +107,6 @@ export const Billing = () => {
       return;
     }
     if(!billItems.length){
-      
       billItems[0] = {"PRODUCT_NAME" : ProductName ,"QUANTITY" : quantity}
     }
       setInputList(
@@ -138,14 +117,66 @@ export const Billing = () => {
     
     }
     const handleClick = (event) => {
-      
-   
         return (
           <h1>Entered Invoice</h1>
         );
       }
   
-    
+    //Manage Dropdown
+    document?.addEventListener("click", function (event) {
+      const isClickInside = specificElement?.contains(event.target);
+      if (!isClickInside) {
+        // The click occurred outside of the specific element
+        setMatchingProducts([]);
+        setVisibility(false);
+      }
+    });
+  
+    function handleInputChange(event) {
+      setVisibility(true);
+      const value = event.target.value;
+      setProductName(value);
+  
+      const matching = Products.filter((product) =>
+        product.toLowerCase().startsWith(value.toLowerCase())
+      );
+      setMatchingProducts(matching);
+      setActiveIndex(-1);
+    }
+  
+    function handleListItemClick(product) {
+      setProductName(product);
+      setMatchingProducts([]);
+    }
+  
+    function handleKeyDown(event) {
+      if (event.keyCode === 40) {
+        // Arrow down
+        setActiveIndex((prevIndex) => {
+          if (prevIndex === matchingProducts.length - 1) {
+            return 0;
+          } else {
+            return prevIndex + 1;
+          }
+        });
+      } else if (event.keyCode === 38) {
+        // Arrow up
+        setActiveIndex((prevIndex) => {
+          if (prevIndex === 0) {
+            return matchingProducts.length - 1;
+          } else {
+            return prevIndex - 1;
+          }
+        });
+      } else if (event.keyCode === 13) {
+        // Enter
+        if (activeIndex !== -1) {
+          setProductName(matchingProducts[activeIndex]);
+          setMatchingProducts([]);
+        }
+      }
+    }
+  
   return (
     <div>
       {JSON.parse(sessionStorage.getItem("login"))?.login ? (
@@ -164,14 +195,11 @@ export const Billing = () => {
                 <table className="table table-striped">
                   <thead>
                     <tr>
-                      <th>id</th>
-                      <th>name</th>
-                      <th>Email</th>
-                      <th>application_date</th>
-                      <th>12 CGPA</th>
-                      <th>Match</th>
-                      <th>Location/</th>
-                      <th>Reason_for_dropoff</th>
+                      <th>Product Name</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                      <th>Amount</th>
+                     
                     </tr>
                   </thead>
                   <tbody>{handleClick}</tbody>
@@ -247,12 +275,29 @@ export const Billing = () => {
                   </div>
                   <div className='billproduct-container'>
         <div className='bill-label'><input
-                  required
-                  className="addproduct-input"
-                  name="PRODUCT_NAME"
-                  value={ProductName}
-                  onChange={(event)=>setProductName(event.target.value)}
-                /></div>
+          required
+          className="addproduct-input"
+          name="PRODUCT_NAME"
+          id="autocomplete"
+          value={ProductName}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+        />
+        <ul
+          className={
+            visibility ? "autocomplete-results" : "autocomplete-results hide"
+          }
+        >
+          {matchingProducts.map((product, index) => (
+            <li
+              key={product}
+              className={index === activeIndex ? "active" : ""}
+              onClick={() => handleListItemClick(product)}
+            >
+              {product}
+            </li>
+          ))}
+        </ul></div>
         <div className='bill-label'>Quantity</div>
         <div className='bill-label quantity'>  <input
         required
