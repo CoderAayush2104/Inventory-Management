@@ -1,54 +1,64 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import "./addOrder.css";
 import jwt_decode from "jwt-decode";
-
+import { listLoader as ListLoader } from "../components/listLoader";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Navigate } from "react-router-dom";
+import { OrderRow } from "../components/orderRow";
 
 export const AddOrder = () => {
 
   const [PRODUCT_NAME, setPRODUCT_NAME] = useState("");
   const [SUPPLIER_NAME, setSUPPLIER_NAME] = useState("");
-
+  const[dataIsLoaded,setDataIsLoaded] = useState(false);
   const [QUANTITY, setQUANTITY] = useState("");
 
+  const[items,setItems] = useState([]);
 
 
+  useEffect(()=>{
+    fetch("https://ochre-beetle-cape.cyclic.app/api/orders",{
+      headers : {
+        "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
+      }
+    })
+      .then((data) => data.json())
+      .then((json) => {
+          setDataIsLoaded(true)
+          setItems(json)
+      });
+    }
+  ,[])
   function handleSubmit(event) {
     event.preventDefault();
 
     let data = {
-    
       PRODUCT_NAME,
       SUPPLIER_NAME,
       QUANTITY,
     };
-
+    console.log(data)
     fetch("https://ochre-beetle-cape.cyclic.app/api/orders", {
       method: "POST",
       headers: {
-        Authorization:
-          "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
+        "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
         "Content-Type": "application/json",
-        Accept: "application/json",
+        "Accept": "application/json",
       },
       body: JSON.stringify(data),
     })
       
-      .then((resp) => resp.json())
+      .then((resp) => console.log(resp.json()))
       .then((result)=> {
         return (fetch("https://ochre-beetle-cape.cyclic.app/api/products/update-product",{
           method : "PATCH",
           headers : {
-            Authorization:
-          "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
+            "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
             "Content-Type":"application/json"
           },
           body : JSON.stringify(result),  
-      
         }))
-        
       })
       .then((resp) => console.log(resp.json()))
       .catch((error) => console.log(error));
@@ -68,6 +78,31 @@ export const AddOrder = () => {
             <div className="gradient-box"></div>
             <div className="title-container">
               <p className="title">Stockify</p>
+            </div>
+            <div className="order-table-container">
+              <div className="ordercolumn-title-background">
+                <div className="ordercolumn-title">
+                  <div className="ordercolumn-item">Date</div>
+                  <div className="ordercolumn-item">Product</div>
+                  <div className="ordercolumn-item">Quantity</div>
+                </div>
+              </div>
+
+              {!dataIsLoaded ? (
+                <ListLoader />
+              ) : (
+                items.map((item) => {
+                  return (
+                    <OrderRow
+
+                      date={JSON.stringify(item.DATE).slice(1,11)}
+                      product={item.PRODUCT_NAME}
+                      quantity={item.QUANTITY}
+                     
+                    />
+                  );
+                })
+              )}
             </div>
           </div>
 

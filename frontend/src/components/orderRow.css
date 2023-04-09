@@ -1,0 +1,34 @@
+.orderrow-container {
+    position: relative;
+    top: 10vh;
+    left: 5%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    z-index: 6;
+    width: 90%;
+    height: 4vw;
+    padding-top: 2vh;
+    color: #DCD7C9;
+    background: transparent;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+   
+    padding-bottom: 1vh;
+    margin-bottom: -0.15vh;
+    
+}
+
+
+
+
+.orderlist-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter';
+    font-weight: 700;
+    border-right: 4px solid #DCD7C9;
+    text-align: center;
+    font-size: 15px;
+}
+

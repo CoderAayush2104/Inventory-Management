@@ -6,49 +6,43 @@ import Navbar from "../components/Navbar";
 import { listLoader as ListLoader } from "../components/listLoader";
 import { BillRow } from "../components/billRow";
 
-
-
-
 export default class BillingHistory extends Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [],
       dataIsLoaded: false,
-
     };
   }
-  
+
   componentDidMount() {
-    if(sessionStorage.length !== 0){
-      
-      fetch("https://ochre-beetle-cape.cyclic.app/api/products",{
-      headers : {
-        "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
-      }
-    })
-      .then((data) => data.json())
-      .then((json) => {
-        this.setState({ items: json, dataIsLoaded: true });
-      });
+    if (sessionStorage.length !== 0) {
+      fetch("https://ochre-beetle-cape.cyclic.app/api/bills", {
+        headers: {
+          Authorization:
+            "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
+        },
+      })
+        .then((data) => data.json())
+        .then((json) => {
+          this.setState({ items: json, dataIsLoaded: true });
+        });
     }
-    
-    
   }
 
-//   displayList = (event) => {
-//     fetch(
-//       `https://ochre-beetle-cape.cyclic.app/api/products/${event.target.value}`,{
-//         headers : {
-//           "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
-//         }
-//       }
-//     )
-//       .then((data) => data.json())
-//       .then((json) => {
-//         this.setState({ items: json });
-//       });
-//   };
+  //   displayList = (event) => {
+  //     fetch(
+  //       `https://ochre-beetle-cape.cyclic.app/api/products/${event.target.value}`,{
+  //         headers : {
+  //           "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
+  //         }
+  //       }
+  //     )
+  //       .then((data) => data.json())
+  //       .then((json) => {
+  //         this.setState({ items: json });
+  //       });
+  //   };
   render() {
     const { dataIsLoaded, items } = this.state;
     return (
@@ -56,28 +50,25 @@ export default class BillingHistory extends Component {
         {JSON.parse(sessionStorage.getItem("login"))?.login ? (
           <div className="productlist-page-container">
             <Navbar />
-            
+
             <div className="horizontal-line"></div>
             <div className="bill-table-container">
               <div className="billcolumn-title-background">
-              <div className="billcolumn-title">
-                <div className="billcolumn-item">Customer Name</div>
-                <div className="billcolumn-item">Phone Number</div>
-                <div className="billcolumn-item">Products</div>
-                <div className="billcolumn-item">Quantity</div>
-                <div className="billcolumn-item ">Price</div>
-                <div className="billcolumn-item last">Amount</div>
+                <div className="billcolumn-title">
+                  <div className="billcolumn-item">Customer Name</div>
+                  <div className="billcolumn-item">Phone Number</div>
+                  <div className="billcolumn-item">Products</div>
+                  <div className="billcolumn-item">Quantity</div>
+                  <div className="billcolumn-item ">Price</div>
+                  <div className="billcolumn-item last">Amount</div>
+                </div>
               </div>
-              </div>
-             
+
               {!dataIsLoaded ? (
-                
                 <ListLoader />
-            
               ) : (
                 items.map((item) => {
                   return (
-                    
                     <BillRow
                       p_id={item.PRODUCT_ID}
                       p_name={item.PRODUCT_NAME}
@@ -86,11 +77,8 @@ export default class BillingHistory extends Component {
                       minimum={item.MIN_QUANTITY}
                       supplier_name={item.NAME}
                     />
-               
                   );
-                }
-                
-                )
+                })
               )}
             </div>
             <div className="productlist-left">
@@ -104,7 +92,14 @@ export default class BillingHistory extends Component {
             <div className="productlist-right">
               <div className="welcome-container">
                 <p className="welcome-msg">Welcome Back</p>
-                <p className="welcome-name">{jwt_decode( JSON.parse(sessionStorage.getItem("login"))?.token)?.result.user_id} !</p>
+                <p className="welcome-name">
+                  {
+                    jwt_decode(
+                      JSON.parse(sessionStorage.getItem("login"))?.token
+                    )?.result.user_id
+                  }{" "}
+                  !
+                </p>
               </div>
             </div>
           </div>

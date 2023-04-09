@@ -1,7 +1,8 @@
-body{
+body {
     padding: 0;
     margin: 0;
 }
+
 .addorder-page-container {
     /* height: 100%; */
     /* overflow-y: scroll; */
@@ -48,9 +49,10 @@ body{
     width: 65%;
     height: 100vh;
     background-color: #2C3639;
-    
+
 }
-.place-order-form-container{
+
+.place-order-form-container {
     padding-left: 2.5vw;
     position: absolute;
     top: 45%;
@@ -58,6 +60,7 @@ body{
     display: grid;
     grid-template-columns: 1fr;
 }
+
 /* .left-triangle{
     position: absolute;
     top: 38.5vh;
@@ -88,12 +91,13 @@ body{
 
 backdrop-filter: blur(13.8px); 
 } */
-.input-container{
+.input-container {
     display: grid;
     grid-template-columns: 30% 65%;
     column-gap: 2.5vw;
     padding: 2.5vh 0;
 }
+
 .add-order-title-container {
     position: absolute;
     top: 25vh;
@@ -226,6 +230,78 @@ backdrop-filter: blur(13.8px);
 
 }
 
+.order-table-container {
+    position: relative;
+
+    z-index: 5;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    height: 65vh;
+    background: rgba(255, 255, 255, 0.27);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(13.8px);
+    border-radius: 20px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    /* padding-bottom: 1.5vh; */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.order-table-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.order-table-container {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.ordercolumn-title-background {
+    position: sticky;
+    top: 0;
+    height: 12vh;
+    width: 100%;
+    background: #A27B5C;
+    padding-top: 5vh;
+    margin-bottom: -10.5vh;
+    z-index: 15;
+}
+
+.ordercolumn-title {
+
+    top: 2.5vh;
+    position: absolute;
+    left: 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    z-index: 6;
+    width: 90%;
+    height: 4vw;
+    padding-top: 2vh;
+    color: #DCD7C9;
+    background: #A27B5C;
+    border: 0px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(13.8px);
+
+    padding-bottom: 1vh;
+    z-index: 10;
+
+}
+
+.ordercolumn-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter';
+    font-weight: 700;
+
+    text-align: center;
+    font-size: 15px;
+}
 
 .gradient-box {
     border-top-right-radius: 50%;

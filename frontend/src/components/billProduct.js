@@ -115,7 +115,7 @@ export const BillProduct = (props) => {
         />
       </div>
 
-      {props.handleCallback({ PRODUCT_NAME: ProductName, QUANTITY: quantity })}
+      {props.handleCallback({ "PRODUCT_NAME" : ProductName, "QUANTITY": quantity })}
     </div>
   );
 };
