@@ -6,7 +6,8 @@
     grid-template-columns: repeat(6,1fr);
     z-index: 6;
     width: 90%;
-    height: 4vw;
+    min-height: 10vh;
+    height: auto;
     padding-top: 2vh;
     color: #DCD7C9;
     background: transparent;
@@ -39,4 +40,10 @@
     text-align: center;
     font-size: 15px;
 }
+
+.products-container{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
 
