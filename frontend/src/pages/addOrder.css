@@ -96,6 +96,7 @@ backdrop-filter: blur(13.8px);
     grid-template-columns: 30% 65%;
     column-gap: 2.5vw;
     padding: 2.5vh 0;
+
 }
 
 .add-order-title-container {
@@ -204,17 +205,11 @@ backdrop-filter: blur(13.8px);
     width: 100%;
 }
 
-.label-container {
-    position: relative;
-    top: 10vh;
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 3vh;
-    width: 100%;
-    padding: 5vh 5vw;
-}
+
 
 .label {
+    position: relative;
+
     font-family: 'Inter';
     font-weight: 700;
     display: flex;
@@ -224,10 +219,9 @@ backdrop-filter: blur(13.8px);
     height: 7.5vh;
     background: rgba(255, 255, 255, 0.27);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(13.8px);
+
     border-radius: 20px;
-
-
+    width: 100%;
 }
 
 .order-table-container {

@@ -6,64 +6,151 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Navigate } from "react-router-dom";
 import { OrderRow } from "../components/orderRow";
+import { Product } from "./../components/Product";
 
+const specificElement = document.getElementById("autocomplete");
 export const AddOrder = () => {
-
-  const [PRODUCT_NAME, setPRODUCT_NAME] = useState("");
+  const [ProductName, setProductName] = useState("");
   const [SUPPLIER_NAME, setSUPPLIER_NAME] = useState("");
-  const[dataIsLoaded,setDataIsLoaded] = useState(false);
+  const [dataIsLoaded, setDataIsLoaded] = useState(false);
   const [QUANTITY, setQUANTITY] = useState("");
+  const ProductsDropdown = [];
+  const [products, setProducts] = useState([]);
+  const [items, setItems] = useState([]);
+  const [productLoaded, setProductLoaded] = useState(false);
 
-  const[items,setItems] = useState([]);
+  const [matchingProducts, setMatchingProducts] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const [visibility, setVisibility] = useState(false);
 
-
-  useEffect(()=>{
-    fetch("https://ochre-beetle-cape.cyclic.app/api/orders",{
-      headers : {
-        "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
-      }
+  useEffect(() => {
+    fetch("https://ochre-beetle-cape.cyclic.app/api/orders", {
+      headers: {
+        Authorization:
+          "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
+      },
     })
       .then((data) => data.json())
       .then((json) => {
-          setDataIsLoaded(true)
-          setItems(json)
+        setDataIsLoaded(true);
+        setItems(json);
       });
+
+    fetch("https://ochre-beetle-cape.cyclic.app/api/products", {
+      headers: {
+        Authorization:
+          "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
+      },
+    })
+      .then((data) => data.json())
+      .then((json) => {
+        setProducts(json);
+        setProductLoaded(true);
+      })
+
+      .catch((error) => console.log(error));
+  }, []);
+
+  //Creating Dropdown array
+  if (productLoaded) {
+    products.forEach(
+      (item, index) => (ProductsDropdown[index] = item.PRODUCT_NAME )
+    );
+    console.log(ProductsDropdown)
+  }
+
+  //Managing Dropdown
+  document?.addEventListener("click", function (event) {
+    const isClickInside = specificElement?.contains(event.target);
+    if (!isClickInside) {
+      // The click occurred outside of the specific element
+      setMatchingProducts([]);
+      setVisibility(false);
     }
-  ,[])
+  });
+  function handleInputChange(event) {
+    setVisibility(true);
+    const value = event.target.value;
+    setProductName(value);
+
+    const matching = ProductsDropdown.filter((product) =>
+      product.toLowerCase().startsWith(value.toLowerCase())
+    );
+    setMatchingProducts(matching);
+    setActiveIndex(-1);
+  }
+
+  function handleListItemClick(product) {
+    setProductName(product);
+    setMatchingProducts([]);
+  }
+
+  function handleKeyDown(event) {
+    if (event.keyCode === 40) {
+      // Arrow down
+      setActiveIndex((prevIndex) => {
+        if (prevIndex === matchingProducts.length - 1) {
+          return 0;
+        } else {
+          return prevIndex + 1;
+        }
+      });
+    } else if (event.keyCode === 38) {
+      // Arrow up
+      setActiveIndex((prevIndex) => {
+        if (prevIndex === 0) {
+          return matchingProducts.length - 1;
+        } else {
+          return prevIndex - 1;
+        }
+      });
+    } else if (event.keyCode === 13) {
+      // Enter
+      if (activeIndex !== -1) {
+        setProductName(matchingProducts[activeIndex]);
+        setMatchingProducts([]);
+      }
+    }
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
     let data = {
-      PRODUCT_NAME,
+      ProductName,
       SUPPLIER_NAME,
       QUANTITY,
     };
-    console.log(data)
+    console.log(data);
     fetch("https://ochre-beetle-cape.cyclic.app/api/orders", {
       method: "POST",
       headers: {
-        "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
+        Authorization:
+          "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify(data),
     })
-      
-      .then((resp) => console.log(resp.json()))
-      .then((result)=> {
-        return (fetch("https://ochre-beetle-cape.cyclic.app/api/products/update-product",{
-          method : "PATCH",
-          headers : {
-            "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
-            "Content-Type":"application/json"
-          },
-          body : JSON.stringify(result),  
-        }))
+      .then((resp) => resp.json())
+      .then((result) => {
+        return fetch(
+          "https://ochre-beetle-cape.cyclic.app/api/products/update-product",
+          {
+            method: "PATCH",
+            headers: {
+              Authorization:
+                "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(result),
+          }
+        );
       })
       .then((resp) => console.log(resp.json()))
       .catch((error) => console.log(error));
 
-    setPRODUCT_NAME("");
+    setProductName("");
     setSUPPLIER_NAME("");
     setQUANTITY("");
   }
@@ -94,11 +181,9 @@ export const AddOrder = () => {
                 items.map((item) => {
                   return (
                     <OrderRow
-
-                      date={JSON.stringify(item.DATE).slice(1,11)}
+                      date={JSON.stringify(item.DATE).slice(1, 11)}
                       product={item.PRODUCT_NAME}
                       quantity={item.QUANTITY}
-                     
                     />
                   );
                 })
@@ -122,23 +207,46 @@ export const AddOrder = () => {
             <div className="add-order-title-container">Place your Order</div>
 
             <div className="place-order-form-container">
-              <form id="add-product-form" onSubmit={handleSubmit}>
+              <form id="add-product-form" onSubmit={handleSubmit} autoComplete="off" >
                 <button className="placeorder-button" type="submit">
                   Place Order
                 </button>
-        
+
                 <div className="input-container">
                   <div className="label">Product Name</div>
-                  <div className="label">
-                    <input
-                      className="addproduct-input"
-                      type="text"
-                      name="PRODUCT_NAME"
-                      value={PRODUCT_NAME}
-                      onChange={(e) => setPRODUCT_NAME(e.target.value)}
-                    />
+                  
+                    <div className="label">
+                      <input
+                      
+                        required
+                        className="addproduct-input"
+                        name="PRODUCT_NAME"
+                        id="autocomplete"
+                        value={ProductName}
+                        onChange={handleInputChange}
+                        onKeyDown={handleKeyDown}
+                      />
+                      <ul
+                        className={
+                          visibility
+                            ? "autocomplete-results"
+                            : "autocomplete-results hide"
+                        }
+                      >
+                        {matchingProducts.map((product, index) => (
+                          <li
+                            key={product}
+                            className={index === activeIndex ? "active" : ""}
+                            onClick={() => handleListItemClick(product)}
+                          >
+                            {product}
+                          </li>
+                        ))}
+                      </ul>
+               
+                      </div>
                   </div>
-                </div>
+     
                 <div className="input-container">
                   <div className="label">Supplier Name</div>
                   <div className="label">

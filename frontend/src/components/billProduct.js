@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./billProduct.css";
 
-const Products = ["Pen", "Pencil", "Notebook", "Marker", "Crayon", "Scale"];
 
+const Products = ["Pen", "Pencil", "Notebook", "Marker", "Crayon", "Scale"];
 const specificElement = document.getElementById("autocomplete");
 
+
+//This componenet is for the quantity and product name that gets added on click of cart button
 export const BillProduct = (props) => {
   const [quantity, setQuantity] = useState();
 

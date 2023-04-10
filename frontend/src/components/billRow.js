@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React  from "react";
 import "./billRow.css";
-import { product } from "./../backup/pages/product";
 
+//This component for the rows in bill history
 export const BillRow = ({
   name,
   contact,
