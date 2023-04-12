@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./billProduct.css";
 
 
@@ -15,7 +15,7 @@ export const BillProduct = (props) => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [visibility, setVisibility] = useState(false);
 
-
+  
   document?.addEventListener("click", function (event) {
     const isClickInside = specificElement?.contains(event.target);
     if (!isClickInside) {
@@ -30,7 +30,7 @@ export const BillProduct = (props) => {
     const value = event.target.value;
     setProductName(value);
 
-    const matching = Products.filter((product) =>
+    const matching = props.dropdown.filter((product) =>
       product.toLowerCase().startsWith(value.toLowerCase())
     );
     setMatchingProducts(matching);

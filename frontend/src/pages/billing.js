@@ -64,8 +64,6 @@ export const Billing = () => {
     setQuantity("");
     setAmount("");
 
-    //Clear state of child component
-    // resetState();
   }
 
   function handleSubmit(event) {
@@ -118,7 +116,7 @@ export const Billing = () => {
     }
     setInputList(
       inputList.concat(
-        <BillProduct btnClick={addInput} handleCallback={Callback} />
+        <BillProduct btnClick={addInput} handleCallback={Callback} dropdown={items}/>
       )
     );
   }
