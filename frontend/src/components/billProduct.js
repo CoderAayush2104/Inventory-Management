@@ -15,14 +15,6 @@ export const BillProduct = (props) => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [visibility, setVisibility] = useState(false);
 
-  //Method to clear state in child component
-  function clearState() {
-    setProductName("");
-    setQuantity("");
-  }
-
-  //Pass clearState function to parent
-  props.passClearStateFunc(clearState);
 
   document?.addEventListener("click", function (event) {
     const isClickInside = specificElement?.contains(event.target);

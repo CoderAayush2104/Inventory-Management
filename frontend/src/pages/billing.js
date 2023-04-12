@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./billing.css";
 import jwt_decode from "jwt-decode";
 
@@ -15,20 +15,19 @@ export const Billing = () => {
   const [ProductName, setProductName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [billItems, setbillItems] = useState([]);
-  const [CUST_CONTACT, setCUST_CONTACT] = useState("");
-  const [CUST_NAME, setCUST_NAME] = useState("");
+  const CUST_CONTACT = useRef(null);
+  const CUST_NAME = useRef(null);
+  // const [CUST_CONTACT, setCUST_CONTACT] = useState("");
+  // const [CUST_NAME, setCUST_NAME] = useState("");
   const [inputList, setInputList] = useState([]);
   const [amount, setAmount] = useState("");
-  const [stateChangeObject, setStateChangeObject] = useState({
-    func: () => {
-      console.log("Hello");
-    },
-  });
+
   const [matchingProducts, setMatchingProducts] = useState([]);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [visibility, setVisibility] = useState(false);
 
   useEffect(() => {
+    clearBill();
     if (sessionStorage.length !== 0) {
       fetch("https://ochre-beetle-cape.cyclic.app/api/products", {
         headers: {
@@ -38,31 +37,17 @@ export const Billing = () => {
       })
         .then((data) => data.json())
         .then((json) => {
-
           setItems(json);
           setDataLoaded(true);
         })
-        
+
         .catch((error) => console.log(error));
     }
   }, []);
-  if(dataLoaded){
-    items.forEach((item,index)=>ProductsDropdown[index] = item.PRODUCT_NAME)
-  }
-
-
-  
-
-  //This is reference to child clearState function
-
-  //Method to assign child clearState function to parent reference
-  function assignClearChildState(childClearStateFunc) {
-    setStateChangeObject({ func: childClearStateFunc });
-  }
-
-  //This function will be used to reset state on click of child component
-  function resetState() {
-    stateChangeObject.func();
+  if (dataLoaded) {
+    items.forEach(
+      (item, index) => (ProductsDropdown[index] = item.PRODUCT_NAME)
+    );
   }
 
   //Function to access Child Data
@@ -73,8 +58,8 @@ export const Billing = () => {
   //Function to clear states
   function clearBill() {
     handleClick();
-    setCUST_CONTACT("");
-    setCUST_NAME("");
+    CUST_CONTACT.current.value = "";
+    CUST_NAME.current.value = "";
     setbillItems((billItems) => (billItems = []));
     setInputList((inputList) => (inputList = []));
     setProductName("");
@@ -82,12 +67,14 @@ export const Billing = () => {
     setAmount("");
 
     //Clear state of child component
-    resetState();
+    // resetState();
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-
+    if (!billItems.length) {
+      billItems[0] = { PRODUCT_NAME: ProductName, QUANTITY: quantity };
+    }
     let data = {
       CUST_CONTACT,
       CUST_NAME,
@@ -107,6 +94,10 @@ export const Billing = () => {
     })
       .then((result) => result.json())
       .then((data) => {
+        if (data.error) {
+          alert(data.error);
+          return;
+        }
         console.log(data.TOTAL_AMOUNT);
         setAmount(data.TOTAL_AMOUNT);
       })
@@ -125,11 +116,7 @@ export const Billing = () => {
     }
     setInputList(
       inputList.concat(
-        <BillProduct
-          btnClick={addInput}
-          handleCallback={Callback}
-          passClearStateFunc={assignClearChildState}
-        />
+        <BillProduct btnClick={addInput} handleCallback={Callback} />
       )
     );
   }
@@ -271,8 +258,7 @@ export const Billing = () => {
                       required
                       className="addproduct-input"
                       name="CUST_CONTACT"
-                      value={CUST_CONTACT}
-                      onChange={(e) => setCUST_CONTACT(e.target.value)}
+                      ref={CUST_CONTACT}
                     />
                   </div>
                   <div className="label">
@@ -280,8 +266,7 @@ export const Billing = () => {
                       required
                       className="addproduct-input"
                       name="CUST_NAME"
-                      value={CUST_NAME}
-                      onChange={(e) => setCUST_NAME(e.target.value)}
+                      ref={CUST_NAME}
                     />
                   </div>
 
@@ -335,7 +320,6 @@ export const Billing = () => {
                   </div>
                   {/* {Rendering additional component if clicked on cart button} */}
                   {inputList}
-        
                 </div>
                 <div className="billling-horizontal-line total-line"></div>
                 <div className="total">

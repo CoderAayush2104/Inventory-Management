@@ -117,16 +117,6 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
     font-size: 15px;
 }
 
-.gradient-box {
-    border-top-right-radius: 50%;
-    height: 50vh;
-    width: 25vw;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: #2C3639;
-    filter: blur(150px);
-}
 
 
 

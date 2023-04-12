@@ -69,6 +69,7 @@ export default class Productlist extends Component {
               </div>
               <div class="searchBox">
                 <input
+                
                   class="searchInput"
                   type="search"
                   name=""

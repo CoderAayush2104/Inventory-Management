@@ -138,6 +138,7 @@ export default class signin extends Component {
                 </div>
                 <div className="input-container-login">
                   <input
+                  type="password"
                     className="input"
                     placeholder="Password"
                     value={this.state.password}

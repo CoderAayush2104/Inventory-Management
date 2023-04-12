@@ -10,7 +10,7 @@ import { Product } from "./../components/Product";
 
 const specificElement = document.getElementById("autocomplete");
 export const AddOrder = () => {
-  const [ProductName, setProductName] = useState("");
+  const [PRODUCT_NAME, setPRODUCT_NAME] = useState("");
   const [SUPPLIER_NAME, setSUPPLIER_NAME] = useState("");
   const [dataIsLoaded, setDataIsLoaded] = useState(false);
   const [QUANTITY, setQUANTITY] = useState("");
@@ -50,7 +50,7 @@ export const AddOrder = () => {
 
       .catch((error) => console.log(error));
   }, []);
-
+  
   //Creating Dropdown array
   if (productLoaded) {
     products.forEach(
@@ -71,7 +71,7 @@ export const AddOrder = () => {
   function handleInputChange(event) {
     setVisibility(true);
     const value = event.target.value;
-    setProductName(value);
+    setPRODUCT_NAME(value);
 
     const matching = ProductsDropdown.filter((product) =>
       product.toLowerCase().startsWith(value.toLowerCase())
@@ -81,7 +81,7 @@ export const AddOrder = () => {
   }
 
   function handleListItemClick(product) {
-    setProductName(product);
+    setPRODUCT_NAME(product);
     setMatchingProducts([]);
   }
 
@@ -107,7 +107,7 @@ export const AddOrder = () => {
     } else if (event.keyCode === 13) {
       // Enter
       if (activeIndex !== -1) {
-        setProductName(matchingProducts[activeIndex]);
+        setPRODUCT_NAME(matchingProducts[activeIndex]);
         setMatchingProducts([]);
       }
     }
@@ -117,7 +117,7 @@ export const AddOrder = () => {
     event.preventDefault();
 
     let data = {
-      ProductName,
+      PRODUCT_NAME,
       SUPPLIER_NAME,
       QUANTITY,
     };
@@ -134,6 +134,7 @@ export const AddOrder = () => {
     })
       .then((resp) => resp.json())
       .then((result) => {
+        console.log(result)
         return fetch(
           "https://ochre-beetle-cape.cyclic.app/api/products/update-product",
           {
@@ -150,7 +151,7 @@ export const AddOrder = () => {
       .then((resp) => console.log(resp.json()))
       .catch((error) => console.log(error));
 
-    setProductName("");
+    setPRODUCT_NAME("");
     setSUPPLIER_NAME("");
     setQUANTITY("");
   }
@@ -222,7 +223,7 @@ export const AddOrder = () => {
                         className="addproduct-input"
                         name="PRODUCT_NAME"
                         id="autocomplete"
-                        value={ProductName}
+                        value={PRODUCT_NAME}
                         onChange={handleInputChange}
                         onKeyDown={handleKeyDown}
                       />

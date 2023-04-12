@@ -13,6 +13,16 @@
   color: #DCD7C9;
   font-size: 40px;
 }
+.gradient-box {
+  border-top-right-radius: 50%;
+  height: 50vh;
+  width: 25vw;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #2C3639;
+  filter: blur(150px);
+}
 
 .autocomplete-results {
 

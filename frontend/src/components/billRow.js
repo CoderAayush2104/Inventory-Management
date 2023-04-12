@@ -9,6 +9,7 @@ export const BillRow = ({
   amount,
   products,
   quantity,
+  prices
 }) => {
   return (
     <div className="billrow-container">
@@ -28,6 +29,14 @@ export const BillRow = ({
           <summary></summary>
           {quantity.map((quantity) => (
             <div className="product">{quantity}</div>
+          ))}
+        </details>
+      </div>
+      <div className="billlist-item">
+        <details className="products-container">
+          <summary></summary>
+          {prices.map((price) => (
+            <div className="product">{price}</div>
           ))}
         </details>
       </div>

@@ -83,16 +83,7 @@
 button:focus{
     outline: none;
 }
-.gradient-box{
-    border-top-right-radius: 50%;
-    height: 50vh;
-    width: 25vw;
-    position: absolute;
-    bottom:0;
-    left:0;
-    background-color: #2C3639;
-    filter: blur(150px);
-}
+
 .navigation-button-container{
     position: relative;
     top:2.5%;

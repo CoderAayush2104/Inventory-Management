@@ -64,6 +64,7 @@ export default class BillingHistory extends Component {
                   <div className="billcolumn-item">Phone Number</div>
                   <div className="billcolumn-item">Products</div>
                   <div className="billcolumn-item">Quantity</div>
+                  <div className="billcolumn-item">Price</div>
                   <div className="billcolumn-item ">Date</div>
                   <div className="billcolumn-item last">Amount</div>
                 </div>
@@ -75,9 +76,11 @@ export default class BillingHistory extends Component {
                 items.map((item) => {
                   let arr1 = [];
                   let arr2 = [];
+                  let arr3 = [];
                   item.billItems.forEach((element,index)=> {
                     arr1[index]= element.PRODUCT_NAME
                     arr2[index] = element.QUANTITY
+                    arr3[index] = element.SELLING_PRICE
                   });
                   return (
                     <BillRow
@@ -86,6 +89,7 @@ export default class BillingHistory extends Component {
                       date={JSON.stringify(item.DATE).slice(1,11)}
                       products={arr1}
                       quantity={arr2}
+                      prices={arr3}
                       amount={item.TOTAL_AMOUNT}
                     />
                   );

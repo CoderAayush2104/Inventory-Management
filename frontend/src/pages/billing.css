@@ -29,6 +29,7 @@
     top: 15vh;
     left: 2.5vw
 }
+
 .total-line {
     width: 94.5vw;
     height: 0px;
@@ -41,7 +42,8 @@
     bottom: 1vh;
     left: -22.5vw;
 }
-.total{
+
+.total {
     padding-top: 2vh;
     display: grid;
     justify-content: flex-end;
@@ -51,12 +53,14 @@
     font-weight: 700;
     padding-right: 4vw;
 }
-.total-label{
+
+.total-label {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
-.total-display{
+
+.total-display {
     width: 10vw;
     font-family: 'Inter';
     font-weight: 700;
@@ -69,7 +73,7 @@
     border: 1px solid rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(13.8px);
     border-radius: 20px;
-    
+
 }
 
 .productlist-left {
@@ -131,17 +135,19 @@
     position: relative;
     top: 30vh;
 }
-.billing-button-container{
+
+.billing-button-container {
     position: relative;
-    top:2.5vh;
+    top: 2.5vh;
     display: grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     padding: 0 5vw;
     gap: 5vw;
     /* display: flex;
     flex-wrap: wrap;
     justify-content: space-around; */
 }
+
 .billing-button {
     background-color: #3F4E4F;
     border: 1px solid transparent;
@@ -154,8 +160,8 @@
     font-size: 1.125rem;
     font-weight: 700;
     line-height: 1.5rem;
-  
-  
+
+
     text-align: center;
     text-decoration: none #DCD7C9 solid;
     text-decoration-thickness: auto;
@@ -216,38 +222,30 @@
 
 }
 
-.gradient-box {
-    border-top-right-radius: 50%;
-    height: 50vh;
-    width: 25vw;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: #2C3639;
-    filter: blur(150px);
-}
-
-.bill-products{
+.bill-products {
     display: flex;
 }
-.add-item-bill{
+
+.add-item-bill {
     position: absolute;
     top: 28.5vh;
     right: 6vw;
     display: grid;
 }
-.add-item-bill :hover{
-    cursor:pointer;
+
+.add-item-bill :hover {
+    cursor: pointer;
 }
+
 .add-item-bill i {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 .modal-body {
-    width:80vw;
+    width: 80vw;
 }
 
 .modal-content {
@@ -256,11 +254,8 @@
     width: 80vw;
 }
 
-.modal-dialog{
+.modal-dialog {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-  
-  
