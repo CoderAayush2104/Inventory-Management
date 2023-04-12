@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./billing.css";
 import jwt_decode from "jwt-decode";
 
@@ -11,14 +11,12 @@ const specificElement = document.getElementById("autocomplete");
 export const Billing = () => {
   const ProductsDropdown = [];
   const [dataLoaded, setDataLoaded] = useState(false);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState();
   const [ProductName, setProductName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [billItems, setbillItems] = useState([]);
-  const CUST_CONTACT = useRef(null);
-  const CUST_NAME = useRef(null);
-  // const [CUST_CONTACT, setCUST_CONTACT] = useState("");
-  // const [CUST_NAME, setCUST_NAME] = useState("");
+  const [CUST_CONTACT, setCUST_CONTACT] = useState("");
+  const [CUST_NAME, setCUST_NAME] = useState("");
   const [inputList, setInputList] = useState([]);
   const [amount, setAmount] = useState("");
 
@@ -37,19 +35,19 @@ export const Billing = () => {
       })
         .then((data) => data.json())
         .then((json) => {
-          setItems(json);
+          json.map((element, index) => {
+            ProductsDropdown[index] = element.PRODUCT_NAME;
+           
+          });
+          setItems(ProductsDropdown);
           setDataLoaded(true);
+          console.log("hello");
         })
 
         .catch((error) => console.log(error));
     }
   }, []);
-  if (dataLoaded) {
-    items.forEach(
-      (item, index) => (ProductsDropdown[index] = item.PRODUCT_NAME)
-    );
-  }
-
+  
   //Function to access Child Data
   function Callback(ChildData) {
     setbillItems(billItems.concat(ChildData));
@@ -58,8 +56,8 @@ export const Billing = () => {
   //Function to clear states
   function clearBill() {
     handleClick();
-    CUST_CONTACT.current.value = "";
-    CUST_NAME.current.value = "";
+    setCUST_CONTACT("");
+    setCUST_NAME("");
     setbillItems((billItems) => (billItems = []));
     setInputList((inputList) => (inputList = []));
     setProductName("");
@@ -73,7 +71,9 @@ export const Billing = () => {
   function handleSubmit(event) {
     event.preventDefault();
     if (!billItems.length) {
+      console.log("Hello");
       billItems[0] = { PRODUCT_NAME: ProductName, QUANTITY: quantity };
+      console.log(billItems);
     }
     let data = {
       CUST_CONTACT,
@@ -112,7 +112,9 @@ export const Billing = () => {
       return;
     }
     if (!billItems.length) {
+      console.log("Hello");
       billItems[0] = { PRODUCT_NAME: ProductName, QUANTITY: quantity };
+      console.log(billItems);
     }
     setInputList(
       inputList.concat(
@@ -139,7 +141,7 @@ export const Billing = () => {
     const value = event.target.value;
     setProductName(value);
 
-    const matching = ProductsDropdown.filter((product) =>
+    const matching = items.filter((product) =>
       product.toLowerCase().startsWith(value.toLowerCase())
     );
     setMatchingProducts(matching);
@@ -258,7 +260,8 @@ export const Billing = () => {
                       required
                       className="addproduct-input"
                       name="CUST_CONTACT"
-                      ref={CUST_CONTACT}
+                      value={CUST_CONTACT}
+                      onChange={(e) => setCUST_CONTACT(e.target.value)}
                     />
                   </div>
                   <div className="label">
@@ -266,7 +269,8 @@ export const Billing = () => {
                       required
                       className="addproduct-input"
                       name="CUST_NAME"
-                      ref={CUST_NAME}
+                      value={CUST_NAME}
+                      onChange={(e) => setCUST_NAME(e.target.value)}
                     />
                   </div>
 
