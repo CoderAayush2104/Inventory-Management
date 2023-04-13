@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./billProduct.css";
 
 
@@ -11,7 +11,8 @@ export const BillProduct = (props) => {
   const [quantity, setQuantity] = useState();
 
   const [ProductName, setProductName] = useState("");
-  const [matchingProducts, setMatchingProducts] = useState([]);
+  const match = useRef();
+  
   const [activeIndex, setActiveIndex] = useState(-1);
   const [visibility, setVisibility] = useState(false);
 
@@ -20,7 +21,7 @@ export const BillProduct = (props) => {
     const isClickInside = specificElement?.contains(event.target);
     if (!isClickInside) {
       // The click occurred outside of the specific element
-      setMatchingProducts([]);
+      match.current = [];
       setVisibility(false);
     }
   });
@@ -33,20 +34,20 @@ export const BillProduct = (props) => {
     const matching = props.dropdown.filter((product) =>
       product.toLowerCase().startsWith(value.toLowerCase())
     );
-    setMatchingProducts(matching);
+    match.current = matching;
     setActiveIndex(-1);
   }
 
   function handleListItemClick(product) {
     setProductName(product);
-    setMatchingProducts([]);
+    match.current = [];
   }
 
   function handleKeyDown(event) {
     if (event.keyCode === 40) {
       // Arrow down
       setActiveIndex((prevIndex) => {
-        if (prevIndex === matchingProducts.length - 1) {
+        if (prevIndex === match.current.length - 1) {
           return 0;
         } else {
           return prevIndex + 1;
@@ -56,7 +57,7 @@ export const BillProduct = (props) => {
       // Arrow up
       setActiveIndex((prevIndex) => {
         if (prevIndex === 0) {
-          return matchingProducts.length - 1;
+          return match.current.length - 1;
         } else {
           return prevIndex - 1;
         }
@@ -64,8 +65,8 @@ export const BillProduct = (props) => {
     } else if (event.keyCode === 13) {
       // Enter
       if (activeIndex !== -1) {
-        setProductName(matchingProducts[activeIndex]);
-        setMatchingProducts([]);
+        setProductName(match.current[activeIndex]);
+        match.current = [];
       }
     }
   }
@@ -86,7 +87,7 @@ export const BillProduct = (props) => {
             visibility ? "autocomplete-results" : "autocomplete-results hide"
           }
         >
-          {matchingProducts.map((product, index) => (
+          {match?.current?.map((product, index) => (
             <li
               key={product}
               className={index === activeIndex ? "active" : ""}

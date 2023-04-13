@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component, useEffect, useRef } from "react";
 import "./addOrder.css";
 import jwt_decode from "jwt-decode";
 import { listLoader as ListLoader } from "../components/listLoader";
@@ -15,11 +15,12 @@ export const AddOrder = () => {
   const [dataIsLoaded, setDataIsLoaded] = useState(false);
   const [QUANTITY, setQUANTITY] = useState("");
   const ProductsDropdown = [];
-  const [products, setProducts] = useState([]);
-  const [items, setItems] = useState([]);
-  const [productLoaded, setProductLoaded] = useState(false);
+  const [products, setProducts] = useState();
+  const [items, setItems] = useState();
 
-  const [matchingProducts, setMatchingProducts] = useState([]);
+  
+  const match = useRef(); 
+  // const [matchingProducts, setMatchingProducts] = useState([]);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [visibility, setVisibility] = useState(false);
 
@@ -32,6 +33,7 @@ export const AddOrder = () => {
     })
       .then((data) => data.json())
       .then((json) => {
+        
         setDataIsLoaded(true);
         setItems(json);
       });
@@ -44,27 +46,24 @@ export const AddOrder = () => {
     })
       .then((data) => data.json())
       .then((json) => {
-        setProducts(json);
-        setProductLoaded(true);
+
+        json.forEach((element, index) => {
+          ProductsDropdown[index] = element.PRODUCT_NAME;
+        });
+        setProducts(ProductsDropdown);
       })
 
       .catch((error) => console.log(error));
   }, []);
   
-  //Creating Dropdown array
-  if (productLoaded) {
-    products.forEach(
-      (item, index) => (ProductsDropdown[index] = item.PRODUCT_NAME )
-    );
-    console.log(ProductsDropdown)
-  }
+ 
 
   //Managing Dropdown
   document?.addEventListener("click", function (event) {
     const isClickInside = specificElement?.contains(event.target);
     if (!isClickInside) {
       // The click occurred outside of the specific element
-      setMatchingProducts([]);
+      match.current = [];
       setVisibility(false);
     }
   });
@@ -73,23 +72,23 @@ export const AddOrder = () => {
     const value = event.target.value;
     setPRODUCT_NAME(value);
 
-    const matching = ProductsDropdown.filter((product) =>
+    const matching = products.filter((product) =>
       product.toLowerCase().startsWith(value.toLowerCase())
     );
-    setMatchingProducts(matching);
+    match.current = matching
     setActiveIndex(-1);
   }
 
   function handleListItemClick(product) {
     setPRODUCT_NAME(product);
-    setMatchingProducts([]);
+    match.current = [];
   }
 
   function handleKeyDown(event) {
     if (event.keyCode === 40) {
       // Arrow down
       setActiveIndex((prevIndex) => {
-        if (prevIndex === matchingProducts.length - 1) {
+        if (prevIndex === match.current.length - 1) {
           return 0;
         } else {
           return prevIndex + 1;
@@ -99,16 +98,17 @@ export const AddOrder = () => {
       // Arrow up
       setActiveIndex((prevIndex) => {
         if (prevIndex === 0) {
-          return matchingProducts.length - 1;
+          return match.current.length - 1;
         } else {
           return prevIndex - 1;
         }
       });
     } else if (event.keyCode === 13) {
       // Enter
+      console.log(match.current[activeIndex])
       if (activeIndex !== -1) {
-        setPRODUCT_NAME(matchingProducts[activeIndex]);
-        setMatchingProducts([]);
+        setPRODUCT_NAME(match.current[activeIndex]);
+        match.current = [];
       }
     }
   }
@@ -234,7 +234,7 @@ export const AddOrder = () => {
                             : "autocomplete-results hide"
                         }
                       >
-                        {matchingProducts.map((product, index) => (
+                        {match?.current?.map((product, index) => (
                           <li
                             key={product}
                             className={index === activeIndex ? "active" : ""}
@@ -252,6 +252,7 @@ export const AddOrder = () => {
                   <div className="label">Supplier Name</div>
                   <div className="label">
                     <input
+                    required
                       className="addproduct-input"
                       type="text"
                       name="SUPPLIER_NAME"
@@ -264,6 +265,7 @@ export const AddOrder = () => {
                   <div className="label">Quantity</div>
                   <div className="label">
                     <input
+                    required
                       className="addproduct-input"
                       name="QUANTITY"
                       type="number"

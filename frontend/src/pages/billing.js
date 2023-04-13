@@ -12,7 +12,7 @@ export const Billing = () => {
 
   console.log("rendered")
   const ProductsDropdown = [];
-  const [dataLoaded, setDataLoaded] = useState(false);
+
   const [items, setItems] = useState();
   const [ProductName, setProductName] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -44,8 +44,7 @@ export const Billing = () => {
             ProductsDropdown[index] = element.PRODUCT_NAME;
           });
           setItems(ProductsDropdown);
-          setDataLoaded(true);
-          console.log("hello");
+    
         })
 
         .catch((error) => console.log(error));
