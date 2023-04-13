@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./billing.css";
 import jwt_decode from "jwt-decode";
 
@@ -9,22 +9,27 @@ import { BillProduct } from "../components/billProduct";
 const specificElement = document.getElementById("autocomplete");
 
 export const Billing = () => {
+
+  console.log("rendered")
   const ProductsDropdown = [];
   const [dataLoaded, setDataLoaded] = useState(false);
   const [items, setItems] = useState();
   const [ProductName, setProductName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [billItems, setbillItems] = useState([]);
-  const [CUST_CONTACT, setCUST_CONTACT] = useState("");
-  const [CUST_NAME, setCUST_NAME] = useState("");
+  const Name = useRef("");
+  const Contact = useRef("");
+
   const [inputList, setInputList] = useState([]);
   const [amount, setAmount] = useState("");
 
-  const [matchingProducts, setMatchingProducts] = useState([]);
+  const match = useRef();
+  
   const [activeIndex, setActiveIndex] = useState(-1);
   const [visibility, setVisibility] = useState(false);
 
   useEffect(() => {
+    
     clearBill();
     if (sessionStorage.length !== 0) {
       fetch("https://ochre-beetle-cape.cyclic.app/api/products", {
@@ -35,9 +40,8 @@ export const Billing = () => {
       })
         .then((data) => data.json())
         .then((json) => {
-          json.map((element, index) => {
+          json.forEach((element, index) => {
             ProductsDropdown[index] = element.PRODUCT_NAME;
-           
           });
           setItems(ProductsDropdown);
           setDataLoaded(true);
@@ -56,8 +60,9 @@ export const Billing = () => {
   //Function to clear states
   function clearBill() {
     handleClick();
-    setCUST_CONTACT("");
-    setCUST_NAME("");
+    Name.current.value = "";
+
+    Contact.current.value = "";
     setbillItems((billItems) => (billItems = []));
     setInputList((inputList) => (inputList = []));
     setProductName("");
@@ -73,12 +78,14 @@ export const Billing = () => {
       billItems[0] = { PRODUCT_NAME: ProductName, QUANTITY: quantity };
       console.log(billItems);
     }
-    let data = {
+    
+    const CUST_CONTACT = Contact.current.value;
+    const CUST_NAME = Name.current.value;
+    let data= {
       CUST_CONTACT,
       CUST_NAME,
       billItems,
-    };
-
+    }
     console.log(data);
     fetch("https://ochre-beetle-cape.cyclic.app/api/bills", {
       method: "POST",
@@ -124,15 +131,16 @@ export const Billing = () => {
     return <h1>Entered Invoice</h1>;
   };
 
-  //Manage Dropdown
-  document?.addEventListener("click", function (event) {
-    const isClickInside = specificElement?.contains(event.target);
-    if (!isClickInside) {
-      // The click occurred outside of the specific element
-      setMatchingProducts([]);
-      setVisibility(false);
-    }
-  });
+
+//Manage Dropdown
+document?.addEventListener("click", function (event) {
+  const isClickInside = specificElement?.contains(event.target);
+  if (!isClickInside) {
+    // The click occurred outside of the specific element
+    match.current = [];
+    setVisibility(false);
+  }
+});
 
   function handleInputChange(event) {
     setVisibility(true);
@@ -142,20 +150,23 @@ export const Billing = () => {
     const matching = items.filter((product) =>
       product.toLowerCase().startsWith(value.toLowerCase())
     );
-    setMatchingProducts(matching);
+    match.current = matching;
+
     setActiveIndex(-1);
   }
 
   function handleListItemClick(product) {
     setProductName(product);
-    setMatchingProducts([]);
+
+    match.current= [];
+
   }
 
   function handleKeyDown(event) {
     if (event.keyCode === 40) {
       // Arrow down
       setActiveIndex((prevIndex) => {
-        if (prevIndex === matchingProducts.length - 1) {
+        if (prevIndex === match.current.length - 1) {
           return 0;
         } else {
           return prevIndex + 1;
@@ -165,7 +176,7 @@ export const Billing = () => {
       // Arrow up
       setActiveIndex((prevIndex) => {
         if (prevIndex === 0) {
-          return matchingProducts.length - 1;
+          return match.current.length - 1;
         } else {
           return prevIndex - 1;
         }
@@ -173,8 +184,10 @@ export const Billing = () => {
     } else if (event.keyCode === 13) {
       // Enter
       if (activeIndex !== -1) {
-        setProductName(matchingProducts[activeIndex]);
-        setMatchingProducts([]);
+
+        setProductName(match.current[activeIndex]);
+
+        match.current = [];
       }
     }
   }
@@ -257,18 +270,17 @@ export const Billing = () => {
                     <input
                       required
                       className="addproduct-input"
-                      name="CUST_CONTACT"
-                      value={CUST_CONTACT}
-                      onChange={(e) => setCUST_CONTACT(e.target.value)}
+                      name="Contact"
+                   
+                      ref={Contact}
                     />
                   </div>
                   <div className="label">
                     <input
                       required
                       className="addproduct-input"
-                      name="CUST_NAME"
-                      value={CUST_NAME}
-                      onChange={(e) => setCUST_NAME(e.target.value)}
+                      name="Name"
+                      ref={Name}
                     />
                   </div>
 
@@ -296,7 +308,7 @@ export const Billing = () => {
                             : "autocomplete-results hide"
                         }
                       >
-                        {matchingProducts.map((product, index) => (
+                        {match?.current?.map((product, index) => (
                           <li
                             key={product}
                             className={index === activeIndex ? "active" : ""}

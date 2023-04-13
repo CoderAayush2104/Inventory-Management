@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./billProduct.css";
 
 
-const Products = ["Pen", "Pencil", "Notebook", "Marker", "Crayon", "Scale"];
+
 const specificElement = document.getElementById("autocomplete");
 
 
