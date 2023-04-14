@@ -1,10 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./billProduct.css";
 
-
-
 const specificElement = document.getElementById("autocomplete");
-
 
 //This componenet is for the quantity and product name that gets added on click of cart button
 export const BillProduct = (props) => {
@@ -12,11 +9,10 @@ export const BillProduct = (props) => {
 
   const [ProductName, setProductName] = useState("");
   const match = useRef();
-  
+
   const [activeIndex, setActiveIndex] = useState(-1);
   const [visibility, setVisibility] = useState(false);
 
-  
   document?.addEventListener("click", function (event) {
     const isClickInside = specificElement?.contains(event.target);
     if (!isClickInside) {
@@ -110,7 +106,7 @@ export const BillProduct = (props) => {
         />
       </div>
 
-      {props.handleCallback({ "PRODUCT_NAME" : ProductName, "QUANTITY": quantity })}
+      {props.handleCallback({ PRODUCT_NAME: ProductName, QUANTITY: quantity })}
     </div>
   );
 };

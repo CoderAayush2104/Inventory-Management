@@ -9,8 +9,7 @@ import { BillProduct } from "../components/billProduct";
 const specificElement = document.getElementById("autocomplete");
 
 export const Billing = () => {
-
-  console.log("rendered")
+  console.log("rendered");
   const ProductsDropdown = [];
 
   const [items, setItems] = useState();
@@ -24,12 +23,11 @@ export const Billing = () => {
   const [amount, setAmount] = useState("");
 
   const match = useRef();
-  
+
   const [activeIndex, setActiveIndex] = useState(-1);
   const [visibility, setVisibility] = useState(false);
 
   useEffect(() => {
-    
     clearBill();
     if (sessionStorage.length !== 0) {
       fetch("https://ochre-beetle-cape.cyclic.app/api/products", {
@@ -44,13 +42,12 @@ export const Billing = () => {
             ProductsDropdown[index] = element.PRODUCT_NAME;
           });
           setItems(ProductsDropdown);
-    
         })
 
         .catch((error) => console.log(error));
     }
   }, []);
-  
+
   //Function to access Child Data
   function Callback(ChildData) {
     setbillItems(billItems.concat(ChildData));
@@ -67,7 +64,6 @@ export const Billing = () => {
     setProductName("");
     setQuantity("");
     setAmount("");
-
   }
 
   function handleSubmit(event) {
@@ -77,14 +73,14 @@ export const Billing = () => {
       billItems[0] = { PRODUCT_NAME: ProductName, QUANTITY: quantity };
       console.log(billItems);
     }
-    
+
     const CUST_CONTACT = Contact.current.value;
     const CUST_NAME = Name.current.value;
-    let data= {
+    let data = {
       CUST_CONTACT,
       CUST_NAME,
       billItems,
-    }
+    };
     console.log(data);
     fetch("https://ochre-beetle-cape.cyclic.app/api/bills", {
       method: "POST",
@@ -122,7 +118,11 @@ export const Billing = () => {
     }
     setInputList(
       inputList.concat(
-        <BillProduct btnClick={addInput} handleCallback={Callback} dropdown={items}/>
+        <BillProduct
+          btnClick={addInput}
+          handleCallback={Callback}
+          dropdown={items}
+        />
       )
     );
   }
@@ -130,16 +130,15 @@ export const Billing = () => {
     return <h1>Entered Invoice</h1>;
   };
 
-
-//Manage Dropdown
-document?.addEventListener("click", function (event) {
-  const isClickInside = specificElement?.contains(event.target);
-  if (!isClickInside) {
-    // The click occurred outside of the specific element
-    match.current = [];
-    setVisibility(false);
-  }
-});
+  //Manage Dropdown
+  document?.addEventListener("click", function (event) {
+    const isClickInside = specificElement?.contains(event.target);
+    if (!isClickInside) {
+      // The click occurred outside of the specific element
+      match.current = [];
+      setVisibility(false);
+    }
+  });
 
   function handleInputChange(event) {
     setVisibility(true);
@@ -157,8 +156,7 @@ document?.addEventListener("click", function (event) {
   function handleListItemClick(product) {
     setProductName(product);
 
-    match.current= [];
-
+    match.current = [];
   }
 
   function handleKeyDown(event) {
@@ -183,7 +181,6 @@ document?.addEventListener("click", function (event) {
     } else if (event.keyCode === 13) {
       // Enter
       if (activeIndex !== -1) {
-
         setProductName(match.current[activeIndex]);
 
         match.current = [];
@@ -270,7 +267,6 @@ document?.addEventListener("click", function (event) {
                       required
                       className="addproduct-input"
                       name="Contact"
-                   
                       ref={Contact}
                     />
                   </div>
