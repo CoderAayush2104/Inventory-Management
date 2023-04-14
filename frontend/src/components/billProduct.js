@@ -71,6 +71,7 @@ export const BillProduct = (props) => {
     <div className="billproduct-container">
       <div className="bill-label">
         <input
+        required
           className="addproduct-input"
           name="PRODUCT_NAME"
           id="autocomplete"
@@ -98,6 +99,7 @@ export const BillProduct = (props) => {
       <div className="bill-label quantity">
         {" "}
         <input
+          required
           className="addproduct-input"
           name="PRODUCT_NAME"
           type="number"
