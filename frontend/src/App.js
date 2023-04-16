@@ -14,6 +14,8 @@ import { AddSupplier } from "./pages/addSupplier";
 import { Billing } from "./pages/billing";
 
 import BillingHistory from './pages/billingHistory';
+
+import Supply from "./pages/supply";
 function App() {
   return (
     <>
@@ -29,6 +31,7 @@ function App() {
         <Route path="/addSupplier" element={<AddSupplier/>}/>
         <Route path="/billing" element={<Billing/>}/>
         <Route path="/billingHistory" element={<BillingHistory/>}/>
+        <Route path="/supply" element={<Supply/>}/>
       </Routes>
     </>
   );

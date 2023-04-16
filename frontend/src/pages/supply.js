@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import "./orderlist.css";
+import "./supply.css";
 import { Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Navbar from "../components/Navbar";
 import { listLoader as ListLoader } from "../components/listLoader";
 
-import { Order } from "../components/Order"
-
-export default class Orderlist extends Component {
+import { SupplyRow } from "../components/supplyRow";
+export default class Supply extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -79,28 +78,29 @@ export default class Orderlist extends Component {
               <Navbar />
             </div>
             <div className="list-container">
-              <div className="orderlist-column-title">
+              <div className="supplylist-column-title">
                 <div className="column-item">Order ID</div>
                 <div className="column-item">Product Name</div>
-                <div className="column-item">Supplier Name</div>
+                <div className="column-item">User Name</div>
                 <div className="column-item">Date</div>
                 <div className="column-item">Quantity</div>
-                <div className="column-item">Status</div>
-                <div className="column-item last">Received Date</div>
+                <div className="column-item last">Status</div>
+              
               </div>
               {!dataIsLoaded ? (
                 <ListLoader />
               ) : (
                 items.map((item) => {
                   return (
-                    <Order
+                    <SupplyRow
                       order_id={item.ORDER_ID}
                       product_name={item.PRODUCT_NAME}
                       supplier_name={item.NAME}
                       date={JSON.stringify(item.DATE).slice(1,11)}
                       quantity={item.QUANTITY}
-                      status={item.STATUS === 1 ? "Accepted" : item.STATUS === -1 ? "Rejected" : "Pending"}
-                      received_date={item.DATE_RECEIVED === null ? ("-") : JSON.stringify(item.DATE_RECEIVED).slice(1,11)}
+                      
+                      // status={item.STATUS}
+                      
                     />
                   );
                 })
@@ -114,3 +114,4 @@ export default class Orderlist extends Component {
     );
   }
 }
+

@@ -85,11 +85,11 @@ background: linear-gradient(90deg, rgba(63,78,79,1) 25%, rgba(44,54,57,1) 25%);
     width: 95vw;
     height: 10vh;
 }
-.orderlist-column-title{
+.supplylist-column-title{
     position: absolute;
     left: 2.5vw;
     display: grid;
-    grid-template-columns: 1fr 1.5fr 2fr 1.25fr 1fr 1fr 1.25fr;
+    grid-template-columns: 1fr 1.5fr 2fr 1fr 1fr 1fr;
     z-index: 6;
     width: 95vw;
     height: 4vw;
