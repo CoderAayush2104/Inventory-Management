@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, Fragment } from "react";
 import "./billing.css";
 import jwt_decode from "jwt-decode";
+import { PDFViewer } from "@react-pdf/renderer";
 
 import Navbar from "../components/Navbar";
 import { Navigate } from "react-router-dom";
 import { BillProduct } from "../components/billProduct";
-
+import Invoice from "../components/Invoice";
 const specificElement = document.getElementById("autocomplete");
 
 export const Billing = () => {
@@ -26,6 +27,8 @@ export const Billing = () => {
 
   const [activeIndex, setActiveIndex] = useState(-1);
   const [visibility, setVisibility] = useState(false);
+
+  const [billData, setBillData] = useState({});
 
   useEffect(() => {
     clearBill();
@@ -55,21 +58,19 @@ export const Billing = () => {
 
   //Function to clear states
   function clearBill() {
-    handleClick();
     Name.current.value = "";
-
     Contact.current.value = "";
     setbillItems((billItems) => (billItems = []));
     setInputList((inputList) => (inputList = []));
     setProductName("");
     setQuantity("");
     setAmount("");
+    setBillData({});
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     if (!billItems.length) {
-      console.log("Hello");
       billItems[0] = { PRODUCT_NAME: ProductName, QUANTITY: quantity };
       console.log(billItems);
     }
@@ -81,7 +82,10 @@ export const Billing = () => {
       CUST_NAME,
       billItems,
     };
-    console.log(data);
+
+
+    const current = new Date();
+
     fetch("https://ochre-beetle-cape.cyclic.app/api/bills", {
       method: "POST",
       headers: {
@@ -98,9 +102,18 @@ export const Billing = () => {
           alert(data.error);
           return;
         }
-        console.log(data.TOTAL_AMOUNT);
         setAmount(data.TOTAL_AMOUNT);
+        setBillData({
+          name: CUST_NAME,
+          contact: CUST_CONTACT,
+          items: billItems,
+          date: `${current.getDate()}/${
+            current.getMonth() + 1
+          }/${current.getFullYear()}`,
+          total_amount: data.TOTAL_AMOUNT,
+        });
       })
+
       .catch((error) => {
         console.log(error);
         alert("Unexpected Error Occured.\n Please try again.");
@@ -112,7 +125,6 @@ export const Billing = () => {
       return;
     }
     if (!billItems.length) {
-      console.log("Hello");
       billItems[0] = { PRODUCT_NAME: ProductName, QUANTITY: quantity };
       console.log(billItems);
     }
@@ -126,9 +138,6 @@ export const Billing = () => {
       )
     );
   }
-  const handleClick = (event) => {
-    return <h1>Entered Invoice</h1>;
-  };
 
   //Manage Dropdown
   document?.addEventListener("click", function (event) {
@@ -196,24 +205,18 @@ export const Billing = () => {
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h4 className="modal-title">User Data</h4>
+                  <h4 className="modal-title">Invoice</h4>
                   <button type="button" className="close" data-dismiss="modal">
                     &times;
                   </button>
                 </div>
-
                 <div className="modal-body">
-                  <table className="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Amount</th>
-                      </tr>
-                    </thead>
-                    <tbody>{handleClick}</tbody>
-                  </table>
+             
+                  <Fragment>
+                    <PDFViewer  className="pdf">
+                      <Invoice invoice={billData} />
+                    </PDFViewer>
+                  </Fragment>
                 </div>
                 <div className="modal-footer">
                   <button
@@ -228,7 +231,6 @@ export const Billing = () => {
             </div>
           </div>
           <div className="billing-horizontal-line"></div>
-
           <div className="productlist-left">
             <div className="gradient-box"></div>
             <div className="title-container">
@@ -267,6 +269,9 @@ export const Billing = () => {
                       required
                       className="addproduct-input"
                       name="Contact"
+                      pattern="[0-9]{10}"
+                      minLength={10}
+                      maxLength={10}
                       ref={Contact}
                     />
                   </div>
@@ -344,7 +349,6 @@ export const Billing = () => {
                   </button>
                   <button
                     className="billing-button"
-                    onClick={handleClick}
                     data-toggle="modal"
                     data-target="#myModal"
                   >

@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
+import jwt_decode from "jwt-decode";
 
 export default function Navbar() {
   function resetToken() {
@@ -8,18 +9,21 @@ export default function Navbar() {
   }
   return (
     <div className="navbar-container">
-      <div className="navbar-item">
+      <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+        .ROLE === "admin" ? "navbar-item" : "navbar-item user-navitem"}>
         <NavLink className="logout-link" to="/home">
           Home
         </NavLink>
       </div>
-      <div className="navbar-item menu-container">
+      <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+        .ROLE === "admin" ? "navbar-item menu-container" : "navbar-item menu-container user-navitem"}>
         <nav>
           <ul class="menu">
             <li class="dropdown dropdown-1">
               Product
               <ul class="dropdown_menu dropdown_menu-1">
-                <NavLink className="navlink" to="/addProduct">
+                <NavLink className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+        .ROLE === "admin" ? "navlink" : "hide"} to="/addProduct">
                   <li class="dropdown_item-1">Add Product</li>
                 </NavLink>
 
@@ -31,7 +35,8 @@ export default function Navbar() {
           </ul>
         </nav>
       </div>
-      <div className="navbar-item menu-container">
+      <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+        .ROLE === "admin"?"navbar-item menu-container" : "hide"}>
         <nav>
           <ul class="menu">
             <li class="dropdown dropdown-1">
@@ -49,7 +54,8 @@ export default function Navbar() {
           </ul>
         </nav>
       </div>
-      <div className="navbar-item menu-container">
+      <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+        .ROLE === "admin"?"navbar-item menu-container" : "hide"}>
         <nav>
           <ul class="menu">
             <li class="dropdown dropdown-1 ">
@@ -67,7 +73,8 @@ export default function Navbar() {
           </ul>
         </nav>
       </div>
-      <div className="navbar-item menu-container">
+      <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+        .ROLE === "admin" ? "navbar-item mneu-container" : "navbar-item menu-container user-navitem"}>
         <nav>
           <ul class="menu">
             <li class="dropdown dropdown-1 ">
@@ -86,7 +93,8 @@ export default function Navbar() {
         </nav>
       </div>
      
-      <div className="navbar-item last">
+      <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+        .ROLE === "admin" ? "navbar-item last" : "navbar-item last user-navitem"}>
         <button className="logout" onClick={resetToken}>
           <NavLink className="logout-link" to="/signIn">
             Logout

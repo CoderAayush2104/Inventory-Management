@@ -1,3 +1,5 @@
+
+
 import React, { Component } from "react";
 import "./supply.css";
 import { Navigate } from "react-router-dom";
@@ -6,6 +8,9 @@ import Navbar from "../components/Navbar";
 import { listLoader as ListLoader } from "../components/listLoader";
 
 import { SupplyRow } from "../components/supplyRow";
+
+
+//This page is JUST for Dummy implementation
 export default class Supply extends Component {
   constructor(props) {
     super(props);
@@ -61,7 +66,6 @@ export default class Supply extends Component {
             <div className="productlist-right">
               <div className="welcome-container">
                 <p className="welcome-msg">Welcome Back</p>
-                <p className="welcome-name">{jwt_decode( JSON.parse(sessionStorage.getItem("login"))?.token)?.result.user_id} !</p>
               </div>
               <div class="searchBox">
                 <input
@@ -69,7 +73,7 @@ export default class Supply extends Component {
                   type="search"
                   name=""
                   placeholder="Search"
-                  onChange={this.displayList}
+                  // onChange={this.displayList}
                 />
                 <button class="searchButton">
                   <i class="fa-solid fa-magnifying-glass"></i>
@@ -91,18 +95,20 @@ export default class Supply extends Component {
                 <ListLoader />
               ) : (
                 items.map((item) => {
-                  return (
-                    <SupplyRow
-                      order_id={item.ORDER_ID}
-                      product_name={item.PRODUCT_NAME}
-                      supplier_name={item.NAME}
-                      date={JSON.stringify(item.DATE).slice(1,11)}
-                      quantity={item.QUANTITY}
-                      
-                      // status={item.STATUS}
-                      
-                    />
-                  );
+                  if(item.STATUS === 0){
+                    return (
+                      <SupplyRow
+                        order_id={item.ORDER_ID}
+                        product_name={item.PRODUCT_NAME}
+                        supplier_name={item.NAME}
+                        date={JSON.stringify(item.DATE).slice(1,11)}
+                        quantity={item.QUANTITY}
+                        user_id={item.USER_ID}
+                        // status={item.STATUS}
+                      />
+                    );
+                  }
+                  
                 })
               )}
             </div>

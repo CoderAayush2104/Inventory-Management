@@ -244,10 +244,18 @@
 
 }
 
+
 .modal-body {
     width: 80vw;
+    height: 30vw;
+    display: flex;
+    justify-content: center;
 }
 
+.pdf{
+    width: 70vw;
+    height: 25vw;
+}
 .modal-content {
     /* position: absolute; */
     left: 0vw;

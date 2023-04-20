@@ -5,10 +5,23 @@ import jwt_decode from "jwt-decode";
 import Navbar from "../components/Navbar";
 import { listLoader as ListLoader } from "../components/listLoader";
 
-import { Order } from "../components/Order"
+import { Order } from "../components/Order";
 
 export default class Orderlist extends Component {
+  
   constructor(props) {
+    // if (
+    //   jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+    //     .ROLE !== "admin"
+    // ) {
+    //   if (
+    //     window.confirm("You are not Admin\n Do you want to go to login page?")
+    //   ) {
+    //     window.location.assign("signIn");
+    //   } else {
+    //     window.location.assign("home");
+    //   }
+    // }
     super(props);
     this.state = {
       items: [],
@@ -17,28 +30,25 @@ export default class Orderlist extends Component {
   }
 
   componentDidMount() {
-    if(sessionStorage.length !== 0){
-     
-      fetch("https://ochre-beetle-cape.cyclic.app/api/orders",{
-        headers : {
-          "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
-        }
-      })
-        .then((data) => data.json())
-        .then((json) => {
-          this.setState({ items: json, dataIsLoaded: true });
-        });
-    }
+    fetch("https://ochre-beetle-cape.cyclic.app/api/orders", {
+      headers: {
+        Authorization:
+          "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
+      },
+    })
+      .then((data) => data.json())
+      .then((json) => {
+        this.setState({ items: json, dataIsLoaded: true });
+      });
   }
 
   displayList = (event) => {
-    fetch(
-      `https://ochre-beetle-cape.cyclic.app/api/orders/`,{
-        headers : {
-          "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
-        }
-      }
-    )
+    fetch(`https://ochre-beetle-cape.cyclic.app/api/orders/`, {
+      headers: {
+        Authorization:
+          "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
+      },
+    })
       .then((data) => data.json())
       .then((json) => {
         this.setState({ items: json });
@@ -48,7 +58,8 @@ export default class Orderlist extends Component {
     const { dataIsLoaded, items } = this.state;
     return (
       <div>
-        {JSON.parse(sessionStorage.getItem("login"))?.login ? (
+        {JSON.parse(sessionStorage.getItem("login"))?.login && jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+        .ROLE === "admin" ? (
           <div className="productlist-page-container">
             <div className="horizontal-line"></div>
             <div className="productlist-left">
@@ -62,7 +73,14 @@ export default class Orderlist extends Component {
             <div className="productlist-right">
               <div className="welcome-container">
                 <p className="welcome-msg">Welcome Back</p>
-                <p className="welcome-name">{jwt_decode( JSON.parse(sessionStorage.getItem("login"))?.token)?.result.user_id} !</p>
+                <p className="welcome-name">
+                  {
+                    jwt_decode(
+                      JSON.parse(sessionStorage.getItem("login"))?.token
+                    )?.result.user_id
+                  }{" "}
+                  !
+                </p>
               </div>
               <div class="searchBox">
                 <input
@@ -97,10 +115,20 @@ export default class Orderlist extends Component {
                       order_id={item.ORDER_ID}
                       product_name={item.PRODUCT_NAME}
                       supplier_name={item.NAME}
-                      date={JSON.stringify(item.DATE).slice(1,11)}
+                      date={JSON.stringify(item.DATE).slice(1, 11)}
                       quantity={item.QUANTITY}
-                      status={item.STATUS === 1 ? "Accepted" : item.STATUS === -1 ? "Rejected" : "Pending"}
-                      received_date={item.DATE_RECEIVED === null ? ("-") : JSON.stringify(item.DATE_RECEIVED).slice(1,11)}
+                      status={
+                        item.STATUS === 1
+                          ? "Accepted"
+                          : item.STATUS === -1
+                          ? "Rejected"
+                          : "Pending"
+                      }
+                      received_date={
+                        item.DATE_RECEIVED === null
+                          ? "-"
+                          : JSON.stringify(item.DATE_RECEIVED).slice(1, 11)
+                      }
                     />
                   );
                 })

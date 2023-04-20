@@ -152,7 +152,8 @@ export const AddOrder = () => {
   }
   return (
     <div>
-      {JSON.parse(sessionStorage.getItem("login"))?.login ? (
+      {JSON.parse(sessionStorage.getItem("login"))?.login && jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+        .ROLE === "admin" ? (
         <div className="productlist-page-container">
           <div className="horizontal-line"></div>
 

@@ -3,30 +3,21 @@ body {
   overflow-x: hidden;
 }
 
-
-
+.hide{
+  display: none;
+}
 .home-header {
   position: sticky;
   top: 0;
 }
 
 .title {
-
-
   font-family: 'Inter';
   font-weight: 700;
   color: #DCD7C9;
   font-size: 40px;
 }
 
-.small {
-
-  /* position: sticky; */
-  top: 2.5vh;
-  left: 2.5vh;
-  color: #AF9F92;
-  font-size: 20px;
-}
 
 .home-footer {
   display: flex;
@@ -36,7 +27,6 @@ body {
   height: 15vh;
   position: relative;
   bottom: 0;
-
   background-color: #3F4E4F;
 }
 
@@ -60,6 +50,10 @@ body {
   width: 100%;
   /* margin: 0 auto; */
 }
+.user{
+  height: 71vh;
+}
+
 
 
 .ag-courses_box {

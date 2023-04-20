@@ -15,7 +15,9 @@
     border-radius: 20px;
     padding-bottom: 1vh;
 }
-
+.hide {
+  display: none;
+}
 .navbar-item {
     font-family: 'Inter';
     font-weight: 700;
@@ -23,7 +25,10 @@
     padding-right: 4vw;
     padding-left: 1.5vw;
 }
-
+.user-navitem{
+  padding-right: 10vw;
+  padding-left: 9vw;
+}
 /*Drop Down*/
 @import url("https://fonts.googleapis.com/css?family=Sen&display=swap");
 .menu-container{

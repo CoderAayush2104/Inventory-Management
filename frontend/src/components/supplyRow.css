@@ -18,7 +18,7 @@
 }
 
 
-.list-item {
+.supplylist-item {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -32,6 +32,15 @@
     
 }
 
-.list-item::-webkit-scrollbar {
+.supplylist-item::-webkit-scrollbar {
     display: none;
+}
+.supplylist-item button{
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    border : 0 solid transparent;
+}
+.supplylist-item button:hover{
+    cursor: pointer;
 }

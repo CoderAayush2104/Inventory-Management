@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Navigate, NavLink} from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 
 import "./signin.css";
-
+import jwt_decode from "jwt-decode";
 import { pageLoader as PageLoader } from "../components/pageLoader";
 
 export default class signin extends Component {
@@ -24,12 +24,13 @@ export default class signin extends Component {
     } else {
       this.setState({ animate: false });
     }
+    sessionStorage.clear();
   }
 
   login(event) {
     this.setState({ loading: true });
     event.preventDefault();
-    // console.warn(this.state);
+
     fetch("https://ochre-beetle-cape.cyclic.app/api/users/login", {
       method: "POST",
       headers: {
@@ -53,8 +54,6 @@ export default class signin extends Component {
               token: data.token,
             })
           );
-
-          console.log(sessionStorage.getItem("login"));
         } else {
           this.setState({ loading: false });
           setTimeout(() => alert("Invalid Username or Password"), 500);

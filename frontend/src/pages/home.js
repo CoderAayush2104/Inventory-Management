@@ -2,8 +2,11 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import { NavLink, Navigate } from "react-router-dom";
 import "./home.css";
-import { Product } from './../components/Product';
+import jwt_decode from "jwt-decode";
+
 export const home = () => {
+  console.log(jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+  .ROLE)
   return (
     <div>
       {JSON.parse(sessionStorage.getItem("login"))?.login ? (
@@ -14,7 +17,8 @@ export const home = () => {
                 <p className="title">Stockify</p>
               </div>
               <Navbar />
-              <div class="ag-format-container">
+              <div class={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+        .ROLE === "admin" ? "ag-format-container" : "ag-format-container user"}>
                 <div class="ag-courses_box">
                   <div class="ag-courses_item">
                     <NavLink
@@ -31,7 +35,8 @@ export const home = () => {
                       </div>
                     </NavLink>
                   </div>
-                  <div class="ag-courses_item">
+                  <div class={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+        .ROLE === "admin" ? "ag-courses_item" : "hide"}>
                     <NavLink
                       to="../addProduct"
                       className="ag-courses-item_link"
@@ -46,11 +51,9 @@ export const home = () => {
                       </div>
                     </NavLink>
                   </div>
-                  <div class="ag-courses_item">
-                    <NavLink
-                      to="../orderlist"
-                      className="ag-courses-item_link"
-                    >
+                  <div class={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+        .ROLE === "admin" ? "ag-courses_item" : "hide"}>
+                    <NavLink to="../orderlist" className="ag-courses-item_link">
                       <div class="ag-courses-item_bg"></div>
                       <img
                         src={require("../assets/your_order.png")}
@@ -61,11 +64,9 @@ export const home = () => {
                       </div>
                     </NavLink>
                   </div>
-                  <div class="ag-courses_item">
-                    <NavLink
-                      to="../addOrder"
-                      className="ag-courses-item_link"
-                    >
+                  <div class={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+        .ROLE === "admin" ? "ag-courses_item" : "hide"}>
+                    <NavLink to="../addOrder" className="ag-courses-item_link">
                       <div class="ag-courses-item_bg"></div>
                       <img
                         src={require("../assets/place_order.png")}
@@ -77,10 +78,7 @@ export const home = () => {
                     </NavLink>
                   </div>
                   <div class="ag-courses_item">
-                    <NavLink
-                      to="../billing"
-                      className="ag-courses-item_link"
-                    >
+                    <NavLink to="../billing" className="ag-courses-item_link">
                       <div class="ag-courses-item_bg"></div>
                       <img
                         src={require("../assets/billing.png")}
@@ -91,7 +89,8 @@ export const home = () => {
                       </div>
                     </NavLink>
                   </div>
-                  <div class="ag-courses_item">
+                  <div class={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
+        .ROLE === "admin" ? "ag-courses_item" : "hide"}>
                     <NavLink
                       to="../supplierList"
                       className="ag-courses-item_link"
@@ -110,7 +109,14 @@ export const home = () => {
               </div>
             </div>
           </div>
-          <div className="home-footer">Made with &nbsp; <i class="fa-solid fa-heart heart" style={{color:" #ff0000"}}></i>&nbsp; in Sem 4 </div>
+          <div className="home-footer">
+            Made with &nbsp;{" "}
+            <i
+              class="fa-solid fa-heart heart"
+              style={{ color: " #ff0000" }}
+            ></i>
+            &nbsp; in Sem 4{" "}
+          </div>
         </div>
       ) : (
         <Navigate to="/signIn" replace />
@@ -118,4 +124,3 @@ export const home = () => {
     </div>
   );
 };
-

@@ -11,8 +11,12 @@ export default class signup extends Component {
       animate: true,
     };
   }
+  componentDidMount(){
+    sessionStorage.clear();
+  }
   render() {
     return (
+      
       <div className="page-container">
  
         <div className="signup-left">
