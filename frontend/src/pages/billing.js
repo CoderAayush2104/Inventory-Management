@@ -83,7 +83,6 @@ export const Billing = () => {
       billItems,
     };
 
-
     const current = new Date();
 
     fetch("https://ochre-beetle-cape.cyclic.app/api/bills", {
@@ -211,9 +210,8 @@ export const Billing = () => {
                   </button>
                 </div>
                 <div className="modal-body">
-             
                   <Fragment>
-                    <PDFViewer  className="pdf">
+                    <PDFViewer className="pdf">
                       <Invoice invoice={billData} />
                     </PDFViewer>
                   </Fragment>

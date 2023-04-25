@@ -22,8 +22,8 @@
     font-family: 'Inter';
     font-weight: 700;
     border-right: 4px solid #DCD7C9;
-    padding-right: 4vw;
-    padding-left: 1.5vw;
+    padding-right: 2vw;
+    padding-left: 2vw;
 }
 .user-navitem{
   padding-right: 10vw;
@@ -77,6 +77,10 @@ nav {
 }
 .order{
   width: 160%;
+}
+.billing{
+  left: -6.5vw;
+  width: 210%;
 }
 .dropdown_menu li {
   display: none;

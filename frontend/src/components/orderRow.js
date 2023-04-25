@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./orderRow.css";
-import { product } from './../backup/pages/product';
+import { product } from './Product';
 
 export const OrderRow = ({
   date,

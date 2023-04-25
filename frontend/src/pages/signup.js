@@ -9,8 +9,47 @@ export default class signup extends Component {
     super();
     this.state = {
       animate: true,
+      user_id: "",
+      email: "",
+      password:"",
+      shop_name: "",
     };
   }
+  signup(event){
+    event.preventDefault();
+    const user_id = this.state.user_id;
+    const email = this.state.email;
+    const password = this.state.password;
+    const shop_name = this.state.shop_name;
+    var data = {
+     user_id,
+     email,
+     password,
+     shop_name,    
+    };
+    console.log(data);
+    fetch("https://ochre-beetle-cape.cyclic.app/api/users/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((result) => {
+      result.json().then((resp) => {
+        if(resp.success){
+          
+        };
+      });
+    })
+    .catch((error) => console.log(error));
+
+    this.setState({ user_id: "" });
+    this.setState({ email: "" });
+    this.setState({ password: "" });
+    this.setState({ shop_name: "" });
+  }
+  
   componentDidMount(){
     sessionStorage.clear();
   }

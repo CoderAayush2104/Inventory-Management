@@ -79,7 +79,7 @@ export default function Navbar() {
           <ul class="menu">
             <li class="dropdown dropdown-1 ">
               Billing
-              <ul class="dropdown_menu dropdown_menu-1 order">
+              <ul class="dropdown_menu dropdown_menu-1 billing">
                 <NavLink className="navlink" to="/billing">
                   <li class="dropdown_item-1">Create Bill</li>
                 </NavLink>
