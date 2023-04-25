@@ -26,11 +26,11 @@ const styles = StyleSheet.create({
         <Fragment>
             <View style={styles.invoiceNoContainer}>
                 <Text style={styles.label}>Invoice No:</Text>
-                <Text style={styles.invoiceDate}>{invoice.invoice_no}</Text>
+                {/* <Text style={styles.invoiceDate}>{invoice.invoice_no}</Text> */}
             </View >
             <View style={styles.invoiceDateContainer}>
                 <Text style={styles.label}>Date: </Text>
-                <Text >{invoice.date}</Text>
+                <Text >{invoice.DATE}</Text>
             </View >
         </Fragment>
   );

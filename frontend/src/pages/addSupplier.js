@@ -83,6 +83,7 @@ export const AddSupplier = () => {
                 <div className="addproduct-input-container">
                   <div className="label">
                     <input
+                    required
                       className="addproduct-input"
                       name="NAME"
                       value={NAME}
@@ -91,6 +92,7 @@ export const AddSupplier = () => {
                   </div>
                   <div className="label">
                     <input
+                    required
                       className="addproduct-input"
                       type="tel"
                       name="CONTACT_NO"
@@ -100,6 +102,7 @@ export const AddSupplier = () => {
                   </div>
                   <div className="label">
                     <input
+                    required
                       className="addproduct-input"
                       type="text"
                       name="EmailID"

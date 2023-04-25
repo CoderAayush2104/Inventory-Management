@@ -7,6 +7,7 @@ import "./signup.css";
 export default class signup extends Component {
   constructor() {
     super();
+    sessionStorage.clear();
     this.state = {
       animate: true,
       user_id: "",
@@ -49,9 +50,13 @@ export default class signup extends Component {
     this.setState({ password: "" });
     this.setState({ shop_name: "" });
   }
-  
-  componentDidMount(){
-    sessionStorage.clear();
+  componentDidMount() {
+    
+    if (window.sessionStorage.getItem("firstLoadDone") === null) {
+      this.setState({ animate: true });
+    } else {
+      this.setState({ animate: false });
+    }
   }
   render() {
     return (
@@ -87,34 +92,29 @@ export default class signup extends Component {
               <form>
                 <div className="input-container-login">
                   <input
+                  required
                     className="input"
                     placeholder="UserId"
                   />
                 </div>
                 <div className="input-container-login">
-                  <input className="input" placeholder="Email" />
+                  <input required className="input" placeholder="Email" />
                 </div>
                 <div className="input-container-login">
                   <input
+                  required
                     className="input"
                     placeholder="Password"
                   />
                 </div>
                 <div className="input-container-login">
                   <input
+                  required
                     className="input"
                     placeholder="Shop Name"
                   />
                 </div>
-                <div className="input-container-login upload">
-                  <input
-                    className="input"
-                    type="file"
-                    accept="image/*"
-                    placeholder="Shop Photo"
-                  />
-                  Upload Shop Photo
-                </div>
+           
                 
                <div className="submit-button-container">
                <button class="submit-button">Sign Up</button>
@@ -132,13 +132,7 @@ export default class signup extends Component {
       </div>
     );
   }
-  componentDidMount() {
-    if (window.sessionStorage.getItem("firstLoadDone") === null) {
-      this.setState({ animate: true });
-    } else {
-      this.setState({ animate: false });
-    }
-  }
+ 
 }
 
 

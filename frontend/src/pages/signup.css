@@ -159,31 +159,7 @@ button:focus{
     height: 8vh;
     margin-bottom: 3vh;
 }
-.upload{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 20vw;
-    height: 8vh;
-    font-family:'Inter';
-    width: 100%;
-    outline: none;
-    color: #96887C;
-    background:rgba(255, 255, 255, 0.63);
-    border: 1px solid #FFFFFF;
-    backdrop-filter: blur(13.4px);
-    border-radius: 18px;
-    padding: 15px;
 
-}
-
-.input-container-login input[type=file] {
-    font-size: 10vh;
-    position: absolute;
-    left: 10;
-    top: 0;
-    opacity: 0;
-  }
 .input{
     font-family:'Inter';
     width: 100%;

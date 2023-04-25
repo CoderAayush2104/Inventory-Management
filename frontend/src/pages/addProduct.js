@@ -90,6 +90,7 @@ export const AddProduct = () => {
                 <div className="addproduct-input-container">
                   <div className="label">
                     <input
+                    required
                       className="addproduct-input"
                       name="PRODUCT_NAME"
                       value={PRODUCT_NAME}
@@ -98,6 +99,7 @@ export const AddProduct = () => {
                   </div>
                   <div className="label">
                     <input
+                    required
                       className="addproduct-input"
                       name="PRESENT_QUANTITY"
                       value={PRESENT_QUANTITY}
@@ -106,6 +108,7 @@ export const AddProduct = () => {
                   </div>
                   <div className="label">
                     <input
+                    required
                       className="addproduct-input"
                       name="MIN_QUANTITY"
                       value={MIN_QUANTITY}
@@ -114,6 +117,7 @@ export const AddProduct = () => {
                   </div>
                   <div className="label">
                     <input
+                    required
                       className="addproduct-input"
                       name="SUPPLIER_ID"
                       type="number"
@@ -123,6 +127,7 @@ export const AddProduct = () => {
                   </div>
                   <div className="label">
                     <input
+                    required
                       className="addproduct-input"
                       name="SELLING_PRICE"
                       value={SELLING_PRICE}

@@ -29,6 +29,7 @@ export const Billing = () => {
   const [visibility, setVisibility] = useState(false);
 
   const [billData, setBillData] = useState({});
+  const [billDataLoaded,setBillDataLoaded] = useState();
 
   useEffect(() => {
     clearBill();
@@ -102,16 +103,34 @@ export const Billing = () => {
           return;
         }
         setAmount(data.TOTAL_AMOUNT);
-        setBillData({
-          name: CUST_NAME,
-          contact: CUST_CONTACT,
-          items: billItems,
-          date: `${current.getDate()}/${
-            current.getMonth() + 1
-          }/${current.getFullYear()}`,
-          total_amount: data.TOTAL_AMOUNT,
-        });
+        
+        return data;
+        // setBillData({
+        //   name: CUST_NAME,
+        //   contact: CUST_CONTACT,
+        //   items: billItems,
+        //   date: `${current.getDate()}/${
+        //     current.getMonth() + 1
+        //   }/${current.getFullYear()}`,
+        //   total_amount: data.TOTAL_AMOUNT,
+        // });
       })
+      .then((data)=>
+        fetch(`https://ochre-beetle-cape.cyclic.app/api/bills/${data.BILL_ID}`, {
+          headers: {
+            Authorization:
+              "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
+          },
+        })
+          .then((data) => data.json())
+          .then((json) => {
+            console.log(json);
+            setBillData(json);
+            setBillDataLoaded(true);
+          })
+
+          .catch((error) => console.log(error))
+      )
 
       .catch((error) => {
         console.log(error);
@@ -212,7 +231,8 @@ export const Billing = () => {
                 <div className="modal-body">
                   <Fragment>
                     <PDFViewer className="pdf">
-                      <Invoice invoice={billData} />
+                      {billDataLoaded?( <Invoice invoice={billData[0]} />) : ""}
+                     
                     </PDFViewer>
                   </Fragment>
                 </div>
