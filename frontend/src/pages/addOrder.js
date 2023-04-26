@@ -130,20 +130,20 @@ export const AddOrder = () => {
       .then((resp) => resp.json())
       .then((result) => {
         console.log(result);
-        return fetch(
-          "https://ochre-beetle-cape.cyclic.app/api/products/update-product",
-          {
-            method: "PATCH",
-            headers: {
-              Authorization:
-                "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(result),
-          }
-        );
+        // return fetch(
+        //   "https://ochre-beetle-cape.cyclic.app/api/products/update-product",
+        //   {
+        //     method: "PATCH",
+        //     headers: {
+        //       Authorization:
+        //         "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
+        //       "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(result),
+        //   }
+        // );
       })
-      .then((resp) => console.log(resp.json()))
+      // .then((resp) => console.log(resp.json()))
       .catch((error) => console.log(error));
 
     setPRODUCT_NAME("");
