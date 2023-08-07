@@ -1,5 +1,5 @@
 import React from "react";
-import "./order.css";
+import "./styles/order.css";
 
 export const Order = ({ order_id, product_name, supplier_name,date, quantity,status,received_date }) => {
   return (

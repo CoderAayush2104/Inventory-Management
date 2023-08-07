@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./orderRow.css";
+import "./styles/orderRow.css";
 import { product } from './Product';
 
 export const OrderRow = ({

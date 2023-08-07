@@ -1,5 +1,5 @@
 import React from 'react'
-import "./pageLoader.css"
+import "./styles/pageLoader.css"
 
 export const pageLoader = () => {
   return (

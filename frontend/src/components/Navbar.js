@@ -1,7 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./navbar.css";
+import "./styles/navbar.css";
 import jwt_decode from "jwt-decode";
+import { Supplier } from './supplier';
 
 export default function Navbar() {
   function resetToken() {
@@ -16,10 +17,9 @@ export default function Navbar() {
         </NavLink>
       </div>
       <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
-        .ROLE === "admin" ? "navbar-item menu-container" : "navbar-item menu-container user-navitem"}>
-        <nav>
-          <ul class="menu">
-            <li class="dropdown dropdown-1">
+        .ROLE === "admin" ? "navbar-item " : "navbar-item  user-navitem"}>
+        
+    
               Product
               <ul class="dropdown_menu dropdown_menu-1">
                 <NavLink className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
@@ -31,34 +31,31 @@ export default function Navbar() {
                   <li class="dropdown_item-3 last-item">Display Products</li>
                 </NavLink>
               </ul>
-            </li>
-          </ul>
-        </nav>
+
+        
       </div>
       <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
-        .ROLE === "admin"?"navbar-item menu-container" : "hide"}>
-        <nav>
-          <ul class="menu">
-            <li class="dropdown dropdown-1">
+        .ROLE === "admin"?"navbar-item" : "hide"}>
+          
               Supplier
               <ul class="dropdown_menu dropdown_menu-1">
+              <li class="dropdown_item-1">
                 <NavLink className="navlink" to="/addSupplier">
-                  <li class="dropdown_item-1">Add Supplier</li>
+                  Add Supplier
                 </NavLink>
+                </li>
 
                 <NavLink className="navlink" to="/supplierList">
                   <li class="dropdown_item-3 last-item">Display Suppliers</li>
                 </NavLink>
               </ul>
-            </li>
-          </ul>
-        </nav>
+   
+        
       </div>
       <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
-        .ROLE === "admin"?"navbar-item menu-container" : "hide"}>
-        <nav>
-          <ul class="menu">
-            <li class="dropdown dropdown-1 ">
+        .ROLE === "admin"?"navbar-item " : "hide"}>
+        
+         
               Order
               <ul class="dropdown_menu dropdown_menu-1 order">
                 <NavLink className="navlink" to="/addOrder">
@@ -69,15 +66,13 @@ export default function Navbar() {
                   <li class="dropdown_item-2 last-item">Display Orders</li>
                 </NavLink>
               </ul>
-            </li>
-          </ul>
-        </nav>
+ 
+        
       </div>
       <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
-        .ROLE === "admin" ? "navbar-item mneu-container" : "navbar-item menu-container user-navitem"}>
-        <nav>
-          <ul class="menu">
-            <li class="dropdown dropdown-1 ">
+        .ROLE === "admin" ? "navbar-item mneu-container" : "navbar-item  user-navitem"}>
+        
+       
               Billing
               <ul class="dropdown_menu dropdown_menu-1 billing">
                 <NavLink className="navlink" to="/billing">
@@ -88,9 +83,8 @@ export default function Navbar() {
                   <li class="dropdown_item-2 last-item">Billing History</li>
                 </NavLink>
               </ul>
-            </li>
-          </ul>
-        </nav>
+     
+        
       </div>
      
       <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result

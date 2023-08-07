@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./product.css";
+import "./styles/product.css";
 
 export const Product = ({
   p_id,

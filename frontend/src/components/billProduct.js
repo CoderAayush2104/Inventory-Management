@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./billProduct.css";
+import "./styles/billProduct.css";
 
 const specificElement = document.getElementById("autocomplete");
 

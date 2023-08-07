@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, Fragment } from "react";
-import "./billing.css";
+import "../styles/billing.css";
 import jwt_decode from "jwt-decode";
 import { PDFViewer } from "@react-pdf/renderer";
 

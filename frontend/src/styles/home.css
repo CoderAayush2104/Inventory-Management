@@ -3,9 +3,10 @@ body {
   overflow-x: hidden;
 }
 
-.hide{
+.hide {
   display: none;
 }
+
 .home-header {
   position: sticky;
   top: 0;
@@ -24,7 +25,7 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
-  height: 15vh;
+  height: 100px;
   position: relative;
   bottom: 0;
   background-color: #3F4E4F;
@@ -42,41 +43,34 @@ body {
 
 /*Card - design */
 .home-card-image {
-  height: 30vh;
-  width: 15vw;
+  height: 200px;
+  width: 200px;
 }
 
 .ag-format-container {
   width: 100%;
-  /* margin: 0 auto; */
+
 }
-.user{
+
+.user {
   height: 71vh;
 }
 
 
 
 .ag-courses_box {
-  /* display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap; */
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: 5vh 7.5vw;
+  padding: 20px 100px;
 }
 
 .ag-courses_item {
-  /* -ms-flex-preferred-size: calc(33.33333% - 2vw);
-  flex-basis: calc(33.33333% - 2vw); */
-  padding : 2vh;
+
+  padding: 20px;
   display: flex;
   justify-content: center;
- 
+
 }
 
 .ag-courses-item_link {
@@ -87,7 +81,7 @@ body {
   border-radius: 28px;
   text-align: center;
   backdrop-filter: blur(13.8px);
-  
+
   overflow: hidden;
 
   position: relative;
@@ -165,33 +159,33 @@ body {
 
 
 @media only screen and (max-width: 979px) {
-  .ag-courses_box{
+  .ag-courses_box {
     grid-template-columns: 1fr 1fr;
   }
+
   .ag-courses_item {
     -ms-flex-preferred-size: calc(50% - 30px);
     flex-basis: calc(50% - 30px);
   }
-  /* .ag-format-container{
-    width: 90%;
-  } */
+
+
 
 }
 
 @media only screen and (max-width: 767px) {
-  .ag-courses_box{
+  .ag-courses_box {
     grid-template-columns: 1fr 1fr;
   }
-  /* .ag-format-container {
-    width: 96%;
-  } */
+
+
 
 }
 
 @media only screen and (max-width: 639px) {
-  .ag-courses_box{
+  .ag-courses_box {
     grid-template-columns: 1fr;
   }
+
   .ag-courses_item {
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;

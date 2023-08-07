@@ -1,5 +1,5 @@
 import React from "react";
-import "./supplyRow.css";
+import "./styles/supplyRow.css";
 
 
 export const SupplyRow = ({ order_id, product_name, user_id,date, quantity}) => {

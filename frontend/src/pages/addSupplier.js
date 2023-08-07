@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./addSupplier.css";
+import "../styles/addSupplier.css";
 import jwt_decode from "jwt-decode";
 import { useState } from "react";
 import Navbar from "../components/Navbar";

@@ -1,7 +1,7 @@
 
 
 import React, { Component } from "react";
-import "./supply.css";
+import "../styles/supply.css";
 import { Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Navbar from "../components/Navbar";

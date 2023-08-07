@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Navigate, NavLink } from "react-router-dom";
 
-import "./signin.css";
+import "../styles/signin.css";
 import jwt_decode from "jwt-decode";
 import { pageLoader as PageLoader } from "../components/pageLoader";
 

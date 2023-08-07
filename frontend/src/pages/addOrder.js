@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useRef } from "react";
-import "./addOrder.css";
+import "../styles/addOrder.css";
 import jwt_decode from "jwt-decode";
 import { listLoader as ListLoader } from "../components/listLoader";
 import { useState } from "react";

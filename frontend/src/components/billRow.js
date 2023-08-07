@@ -1,5 +1,5 @@
 import React  from "react";
-import "./billRow.css";
+import "./styles/billRow.css";
 
 //This component for the rows in bill history
 export const BillRow = ({

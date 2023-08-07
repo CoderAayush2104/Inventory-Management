@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import { NavLink, Navigate } from "react-router-dom";
-import "./home.css";
+import "../styles/home.css";
 import jwt_decode from "jwt-decode";
 
 export const home = () => {

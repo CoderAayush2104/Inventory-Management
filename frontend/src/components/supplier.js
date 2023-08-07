@@ -1,5 +1,5 @@
 import React from "react";
-import "./supplier.css";
+import "./styles/supplier.css";
 
 export const Supplier = ({ supplier_id, supplier_name, contact_no, email }) => {
   return (

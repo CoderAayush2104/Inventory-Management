@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./billingHistory.css";
+import "../styles/billingHistory.css";
 import { Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Navbar from "../components/Navbar";
@@ -34,19 +34,7 @@ export default class BillingHistory extends Component {
     }
   }
 
-  //   displayList = (event) => {
-  //     fetch(
-  //       `https://ochre-beetle-cape.cyclic.app/api/products/${event.target.value}`,{
-  //         headers : {
-  //           "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
-  //         }
-  //       }
-  //     )
-  //       .then((data) => data.json())
-  //       .then((json) => {
-  //         this.setState({ items: json });
-  //       });
-  //   };
+
   render() {
     const { dataIsLoaded, items } = this.state;
     

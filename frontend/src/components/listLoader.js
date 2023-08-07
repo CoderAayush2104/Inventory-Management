@@ -1,5 +1,5 @@
 import React from "react";
-import "./listLoader.css";
+import "./styles/listLoader.css";
 
 export const listLoader = () => {
   return (
