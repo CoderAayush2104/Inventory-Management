@@ -44,7 +44,8 @@
 }
 
 .total {
-    padding-top: 2vh;
+   
+    margin-top: 300px;
     display: grid;
     justify-content: flex-end;
     grid-template-columns: 1fr 0.2fr;
@@ -126,7 +127,7 @@
 .addproduct-input-container {
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 3vh;
+    row-gap: 25px;
     width: 100%;
     padding: 5vh 5vw;
 }

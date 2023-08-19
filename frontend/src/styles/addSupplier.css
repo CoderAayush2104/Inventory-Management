@@ -80,14 +80,16 @@
 .addproduct-input-container {
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 3vh;
+    row-gap: 25px;
     width: 100%;
     padding: 5vh 5vw;
+  
 }
 
 .addproduct-form-container {
-    position: relative;
-    top: 30vh;
+    width: 100%;
+    position: absolute;
+    top: 250px;
 }
 
 .addproduct-button {
@@ -150,11 +152,12 @@
 }
 
 .label-container {
-    position: relative;
-    top: 10vh;
+  
+    position: absolute;
+    top: 250px;
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 3vh;
+    row-gap: 25px;
     width: 100%;
     padding: 5vh 5vw;
 }
