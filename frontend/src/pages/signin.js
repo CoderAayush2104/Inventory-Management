@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Navigate, NavLink } from "react-router-dom";
+
 import "../styles/signin.css";
+import jwt_decode from "jwt-decode";
 import { pageLoader as PageLoader } from "../components/pageLoader";
 
 export default class signin extends Component {
   constructor() {
     super();
-    setTimeout(()=>window.scrollTo(0,850),2000)
     this.state = {
       animate: true,
       user_id: "",

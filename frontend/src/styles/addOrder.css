@@ -136,14 +136,14 @@ backdrop-filter: blur(13.8px);
 .addproduct-input-container {
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 25px;
+    row-gap: 3vh;
     width: 100%;
     padding: 5vh 5vw;
 }
 
 .addproduct-form-container {
-    position: absolute;
-    top: 250px;
+    position: relative;
+    top: 30vh;
 }
 
 .placeorder-button {

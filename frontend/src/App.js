@@ -16,7 +16,7 @@ import { Billing } from "./pages/billing";
 import BillingHistory from './pages/billingHistory';
 
 import Supply from "./pages/supply";
-
+import { render } from '@testing-library/react';
 function App() {
   return (
     <>

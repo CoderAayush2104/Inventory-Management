@@ -16,7 +16,6 @@ export default function Navbar() {
           Home
         </NavLink>
       </div>
-      <div className="separator"></div>
       <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
         .ROLE === "admin" ? "navbar-item " : "navbar-item  user-navitem"}>
         
@@ -35,7 +34,6 @@ export default function Navbar() {
 
         
       </div>
-      <div className="separator"></div>
       <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
         .ROLE === "admin"?"navbar-item" : "hide"}>
           
@@ -54,7 +52,6 @@ export default function Navbar() {
    
         
       </div>
-      <div className="separator"></div>
       <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
         .ROLE === "admin"?"navbar-item " : "hide"}>
         
@@ -72,7 +69,6 @@ export default function Navbar() {
  
         
       </div>
-      <div className="separator"></div>
       <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
         .ROLE === "admin" ? "navbar-item mneu-container" : "navbar-item  user-navitem"}>
         
@@ -90,7 +86,6 @@ export default function Navbar() {
      
         
       </div>
-      <div className="separator"></div>
      
       <div className={jwt_decode(JSON.parse(sessionStorage.getItem("login")).token).result
         .ROLE === "admin" ? "navbar-item last" : "navbar-item last user-navitem"}>

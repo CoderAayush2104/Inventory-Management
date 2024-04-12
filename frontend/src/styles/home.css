@@ -1,4 +1,7 @@
-
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
 
 .hide {
   display: none;
@@ -7,6 +10,13 @@
 .home-header {
   position: sticky;
   top: 0;
+}
+
+.title {
+  font-family: 'Inter';
+  font-weight: 700;
+  color: #DCD7C9;
+  font-size: 40px;
 }
 
 
@@ -111,7 +121,7 @@
 
 .ag-courses-item_bg {
   height: 20vh;
-  width: 15vw;
+  width: 10vw;
   background-color: #f9b234;
 
   z-index: 1;
@@ -148,7 +158,7 @@
 
 
 
-@media screen and (max-width: 979px) {
+@media only screen and (max-width: 979px) {
   .ag-courses_box {
     grid-template-columns: 1fr 1fr;
   }
@@ -162,7 +172,7 @@
 
 }
 
-@media screen and (max-width: 767px) {
+@media only screen and (max-width: 767px) {
   .ag-courses_box {
     grid-template-columns: 1fr 1fr;
   }
@@ -171,7 +181,7 @@
 
 }
 
-@media screen and (max-width: 639px) {
+@media only screen and (max-width: 639px) {
   .ag-courses_box {
     grid-template-columns: 1fr;
   }
@@ -208,12 +218,4 @@
     transform: scale(1.25);
   }
 
-}
-
-
-@media screen and (max-width:768px) {
-  .ag-courses_box {
-    
-    padding: 20px 40px;
-  }
 }
