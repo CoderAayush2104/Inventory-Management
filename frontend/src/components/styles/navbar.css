@@ -22,14 +22,14 @@
   box-sizing:border-box;
     font-family: 'Inter';
     font-weight: 700;
-
+/* background-color: red; */
     padding: 10px 50px;
     border-right: 4px solid #DCD7C9;
     display: flex;
     justify-content: center;
     align-items: center;
    height: 100%;
-
+  width: 100%;
 
 }
 
