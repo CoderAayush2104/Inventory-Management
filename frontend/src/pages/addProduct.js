@@ -23,7 +23,7 @@ export const AddProduct = () => {
       SELLING_PRICE,
     };
     console.log(data);
-    fetch("https://ochre-beetle-cape.cyclic.app/api/products", {
+    fetch("https://stockify-backend-dzr7.onrender.com/api/products", {
       method: "POST",
       headers: {
         Authorization:

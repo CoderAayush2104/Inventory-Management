@@ -34,7 +34,7 @@ export const Billing = () => {
   useEffect(() => {
     clearBill();
     if (sessionStorage.length !== 0) {
-      fetch("https://ochre-beetle-cape.cyclic.app/api/products", {
+      fetch("https://stockify-backend-dzr7.onrender.com/api/products", {
         headers: {
           Authorization:
             "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
@@ -86,7 +86,7 @@ export const Billing = () => {
 
     const current = new Date();
 
-    fetch("https://ochre-beetle-cape.cyclic.app/api/bills", {
+    fetch("https://stockify-backend-dzr7.onrender.com/api/bills", {
       method: "POST",
       headers: {
         Authorization:
@@ -116,7 +116,7 @@ export const Billing = () => {
         // });
       })
       .then((data)=>
-        fetch(`https://ochre-beetle-cape.cyclic.app/api/bills/${data.BILL_ID}`, {
+        fetch(`https://stockify-backend-dzr7.onrender.com/api/bills/${data.BILL_ID}`, {
           headers: {
             Authorization:
               "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,

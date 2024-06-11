@@ -19,7 +19,7 @@ export default class Supplierlist extends Component {
 
   componentDidMount() {
     if(sessionStorage.length !== 0){
-      fetch("https://ochre-beetle-cape.cyclic.app/api/suppliers",{
+      fetch("https://stockify-backend-dzr7.onrender.com/api/suppliers",{
         headers : {
           "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
         }
@@ -33,7 +33,7 @@ export default class Supplierlist extends Component {
 
   displayList = (event) => {
     fetch(
-      `https://ochre-beetle-cape.cyclic.app/api/suppliers/${event.target.value}`,{
+      `https://stockify-backend-dzr7.onrender.com/api/suppliers/${event.target.value}`,{
         headers : {
           "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
         }

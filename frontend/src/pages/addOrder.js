@@ -24,7 +24,7 @@ export const AddOrder = () => {
   const [visibility, setVisibility] = useState(false);
 
   useEffect(() => {
-    fetch("https://ochre-beetle-cape.cyclic.app/api/orders", {
+    fetch("https://stockify-backend-dzr7.onrender.com/api/orders", {
       headers: {
         Authorization:
           "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
@@ -36,7 +36,7 @@ export const AddOrder = () => {
         setItems(json);
       });
 
-    fetch("https://ochre-beetle-cape.cyclic.app/api/products", {
+    fetch("https://stockify-backend-dzr7.onrender.com/api/products", {
       headers: {
         Authorization:
           "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
@@ -117,7 +117,7 @@ export const AddOrder = () => {
       QUANTITY,
     };
     console.log(data);
-    fetch("https://ochre-beetle-cape.cyclic.app/api/orders", {
+    fetch("https://stockify-backend-dzr7.onrender.com/api/orders", {
       method: "POST",
       headers: {
         Authorization:

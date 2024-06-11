@@ -7,7 +7,7 @@ export const SupplyRow = ({ order_id, product_name, user_id,date, quantity}) => 
   function handleClick(e){
     if(e.target.className === "fa-solid fa-circle-check"){
       const data = {"order_id" : order_id,"status" : 1}
-      fetch('https://ochre-beetle-cape.cyclic.app/api/orders/',{
+      fetch('https://stockify-backend-dzr7.onrender.com/api/orders/',{
         method : 'PATCH',
         headers : {
           "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
@@ -18,7 +18,7 @@ export const SupplyRow = ({ order_id, product_name, user_id,date, quantity}) => 
       .then((resp)=>resp.json())
       .then((result)=>console.log(result))
       .then(()=> {return fetch(
-          "https://ochre-beetle-cape.cyclic.app/api/orders/",
+          "https://stockify-backend-dzr7.onrender.com/api/orders/",
           {
             method: "GET",
             headers: {
@@ -32,7 +32,7 @@ export const SupplyRow = ({ order_id, product_name, user_id,date, quantity}) => 
         .then((data)=>data.map((item)=>{if(item.ORDER_ID === order_id){
           const result = {"PRODUCT_ID" : item.PRODUCT_ID ,"ORDER_ID" : item.ORDER_ID}
           return fetch(
-              "https://ochre-beetle-cape.cyclic.app/api/products/update-product",
+              "https://stockify-backend-dzr7.onrender.com/api/products/update-product",
               {
                 method: "PATCH",
                 headers: {
@@ -50,7 +50,7 @@ export const SupplyRow = ({ order_id, product_name, user_id,date, quantity}) => 
     }
     else if(e.target.className === "fa-sharp fa-solid fa-circle-xmark"){
       const data = {"order_id" : order_id,"status" : -1}
-      fetch('https://ochre-beetle-cape.cyclic.app/api/orders/',{
+      fetch('https://stockify-backend-dzr7.onrender.com/api/orders/',{
         method : "PATCH",
         headers : {
           "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,

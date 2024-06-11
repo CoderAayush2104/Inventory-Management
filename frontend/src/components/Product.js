@@ -16,7 +16,7 @@ export const Product = ({
     e.target.parentElement.parentElement.parentElement.remove();
 
     fetch(
-      `https://ochre-beetle-cape.cyclic.app/api/products/delete/${PRODUCT_ID}`,
+      `https://stockify-backend-dzr7.onrender.com/api/products/delete/${PRODUCT_ID}`,
       {
         method: "DELETE",
         headers: {
