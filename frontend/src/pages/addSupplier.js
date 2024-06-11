@@ -20,7 +20,7 @@ export const AddSupplier = () => {
       EmailID,
     };
     console.log(data);
-    fetch("https://ochre-beetle-cape.cyclic.app/api/suppliers", {
+    fetch("https://stockify-backend-dzr7.onrender.com/api/suppliers", {
       method: "POST",
       headers: {
         Authorization:

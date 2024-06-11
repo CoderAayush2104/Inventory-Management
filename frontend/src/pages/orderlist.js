@@ -30,7 +30,7 @@ export default class Orderlist extends Component {
   }
 
   componentDidMount() {
-    fetch("https://ochre-beetle-cape.cyclic.app/api/orders", {
+    fetch("https://stockify-backend-dzr7.onrender.com/api/orders", {
       headers: {
         Authorization:
           "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
@@ -43,7 +43,7 @@ export default class Orderlist extends Component {
   }
 
   displayList = (event) => {
-    fetch(`https://ochre-beetle-cape.cyclic.app/api/orders/`, {
+    fetch(`https://stockify-backend-dzr7.onrender.com/api/orders/`, {
       headers: {
         Authorization:
           "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,

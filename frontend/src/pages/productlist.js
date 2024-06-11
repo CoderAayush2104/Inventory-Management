@@ -18,7 +18,7 @@ export default class Productlist extends Component {
   componentDidMount() {
     if(sessionStorage.length !== 0){
       
-      fetch("https://ochre-beetle-cape.cyclic.app/api/products",{
+      fetch("https://stockify-backend-dzr7.onrender.com/api/products",{
       headers : {
         "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
       }
@@ -34,7 +34,7 @@ export default class Productlist extends Component {
 
   displayList = (event) => {
     fetch(
-      `https://ochre-beetle-cape.cyclic.app/api/products/${event.target.value}`,{
+      `https://stockify-backend-dzr7.onrender.com/api/products/${event.target.value}`,{
         headers : {
           "Authorization" : "Bearer " + JSON.parse(sessionStorage.getItem("login")).token
         }

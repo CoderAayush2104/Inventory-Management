@@ -29,7 +29,7 @@ export default class signup extends Component {
      shop_name,    
     };
     console.log(data);
-    fetch("https://ochre-beetle-cape.cyclic.app/api/users/", {
+    fetch("https://stockify-backend-dzr7.onrender.com/api/users/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

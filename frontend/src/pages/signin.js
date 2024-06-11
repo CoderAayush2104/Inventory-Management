@@ -31,7 +31,7 @@ export default class signin extends Component {
     this.setState({ loading: true });
     event.preventDefault();
 
-    fetch("https://ochre-beetle-cape.cyclic.app/api/users/login", {
+    fetch("https://stockify-backend-dzr7.onrender.com/api/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

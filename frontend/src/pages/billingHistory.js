@@ -17,7 +17,7 @@ export default class BillingHistory extends Component {
 
   componentDidMount() {
     if (sessionStorage.length !== 0) {
-      fetch("https://ochre-beetle-cape.cyclic.app/api/bills", {
+      fetch("https://stockify-backend-dzr7.onrender.com/api/bills", {
         headers: {
           Authorization:
             "Bearer " + JSON.parse(sessionStorage.getItem("login")).token,
